@@ -1,0 +1,715 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B00D38AF1A9A0A46005605CB /* colorPicker.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B00D389C1A9A0A46005605CB /* colorPicker.bundle */; };
+		B00D38B01A9A0A46005605CB /* NEOColorPickerBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B00D389E1A9A0A46005605CB /* NEOColorPickerBaseViewController.m */; };
+		B00D38B11A9A0A46005605CB /* NEOColorPickerFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B00D38A01A9A0A46005605CB /* NEOColorPickerFavoritesViewController.m */; };
+		B00D38B21A9A0A46005605CB /* NEOColorPickerFavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B00D38A11A9A0A46005605CB /* NEOColorPickerFavoritesViewController.xib */; };
+		B00D38B31A9A0A46005605CB /* NEOColorPickerGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = B00D38A31A9A0A46005605CB /* NEOColorPickerGradientView.m */; };
+		B00D38B41A9A0A46005605CB /* NEOColorPickerHSLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B00D38A51A9A0A46005605CB /* NEOColorPickerHSLViewController.m */; };
+		B00D38B51A9A0A46005605CB /* NEOColorPickerHSLViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B00D38A61A9A0A46005605CB /* NEOColorPickerHSLViewController.xib */; };
+		B00D38B61A9A0A46005605CB /* NEOColorPickerHueGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B00D38A81A9A0A46005605CB /* NEOColorPickerHueGridViewController.m */; };
+		B00D38B71A9A0A46005605CB /* NEOColorPickerHueGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B00D38A91A9A0A46005605CB /* NEOColorPickerHueGridViewController.xib */; };
+		B00D38B81A9A0A46005605CB /* NEOColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B00D38AB1A9A0A46005605CB /* NEOColorPickerViewController.m */; };
+		B00D38B91A9A0A46005605CB /* NEOColorPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B00D38AC1A9A0A46005605CB /* NEOColorPickerViewController.xib */; };
+		B00D38BA1A9A0A46005605CB /* UIColor+NEOColor.m in Sources */ = {isa = PBXBuildFile; fileRef = B00D38AE1A9A0A46005605CB /* UIColor+NEOColor.m */; };
+		B0203D4F1A98B77B009E245E /* ButtonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B0203D4E1A98B77B009E245E /* ButtonNode.m */; };
+		B0203D521A98CF41009E245E /* frame.png in Resources */ = {isa = PBXBuildFile; fileRef = B0203D511A98CF41009E245E /* frame.png */; };
+		B04304211A9DFA57002D0672 /* StoryEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = B04304201A9DFA57002D0672 /* StoryEntity.m */; };
+		B09E62031B68C3FB004F7BC1 /* include in Resources */ = {isa = PBXBuildFile; fileRef = B09E62011B68C3FB004F7BC1 /* include */; };
+		B09E62041B68C3FB004F7BC1 /* libTriggerPad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B09E62021B68C3FB004F7BC1 /* libTriggerPad.a */; };
+		B0B914861A9B3F2E0023E367 /* Thivam.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0B914841A9B3F2E0023E367 /* Thivam.xcdatamodeld */; };
+		B0B914891A9B3F3B0023E367 /* DBAccessLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B914881A9B3F3B0023E367 /* DBAccessLayer.m */; };
+		B0B9148E1A9B40370023E367 /* GestureEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B9148D1A9B40370023E367 /* GestureEntity.m */; };
+		B0B914941A9B5B960023E367 /* SceneEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B914931A9B5B960023E367 /* SceneEntity.m */; };
+		B0EBD4F61A5EAEF500BF7BFA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EBD4F51A5EAEF500BF7BFA /* main.m */; };
+		B0EBD4F91A5EAEF500BF7BFA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EBD4F81A5EAEF500BF7BFA /* AppDelegate.m */; };
+		B0EBD4FC1A5EAEF500BF7BFA /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EBD4FB1A5EAEF500BF7BFA /* GameScene.m */; };
+		B0EBD4FE1A5EAEF500BF7BFA /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B0EBD4FD1A5EAEF500BF7BFA /* GameScene.sks */; };
+		B0EBD5011A5EAEF500BF7BFA /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EBD5001A5EAEF500BF7BFA /* GameViewController.m */; };
+		B0EBD5041A5EAEF500BF7BFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0EBD5021A5EAEF500BF7BFA /* Main.storyboard */; };
+		B0EBD5061A5EAEF500BF7BFA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0EBD5051A5EAEF500BF7BFA /* Images.xcassets */; };
+		B0EBD5091A5EAEF500BF7BFA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0EBD5071A5EAEF500BF7BFA /* LaunchScreen.xib */; };
+		B0EBD5151A5EAEF500BF7BFA /* ap_effectsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EBD5141A5EAEF500BF7BFA /* ap_effectsTests.m */; };
+		B0EBD53E1A5EB77400BF7BFA /* NodeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EBD53D1A5EB77400BF7BFA /* NodeObject.m */; };
+		B0EBD58A1A67D3B600BF7BFA /* test@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0EBD5891A67D3B600BF7BFA /* test@2x.png */; };
+		B0EBD5941A712B1300BF7BFA /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = B0EBD5921A712B1300BF7BFA /* spark.png */; };
+		B0EBD5961A71308500BF7BFA /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = B0EBD5951A71308500BF7BFA /* camera.png */; };
+		B0FF5E621A8CD984003AE476 /* ToneGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FF5E611A8CD984003AE476 /* ToneGenerator.m */; };
+		B0FF5E641A8E36B5003AE476 /* EffectCombos in Resources */ = {isa = PBXBuildFile; fileRef = B0FF5E631A8E36B5003AE476 /* EffectCombos */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B0EBD50F1A5EAEF500BF7BFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B0EBD4E81A5EAEF500BF7BFA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B0EBD4EF1A5EAEF500BF7BFA;
+			remoteInfo = "ap-effects";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B00D389C1A9A0A46005605CB /* colorPicker.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = colorPicker.bundle; sourceTree = "<group>"; };
+		B00D389D1A9A0A46005605CB /* NEOColorPickerBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEOColorPickerBaseViewController.h; sourceTree = "<group>"; };
+		B00D389E1A9A0A46005605CB /* NEOColorPickerBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEOColorPickerBaseViewController.m; sourceTree = "<group>"; };
+		B00D389F1A9A0A46005605CB /* NEOColorPickerFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEOColorPickerFavoritesViewController.h; sourceTree = "<group>"; };
+		B00D38A01A9A0A46005605CB /* NEOColorPickerFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEOColorPickerFavoritesViewController.m; sourceTree = "<group>"; };
+		B00D38A11A9A0A46005605CB /* NEOColorPickerFavoritesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NEOColorPickerFavoritesViewController.xib; sourceTree = "<group>"; };
+		B00D38A21A9A0A46005605CB /* NEOColorPickerGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEOColorPickerGradientView.h; sourceTree = "<group>"; };
+		B00D38A31A9A0A46005605CB /* NEOColorPickerGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEOColorPickerGradientView.m; sourceTree = "<group>"; };
+		B00D38A41A9A0A46005605CB /* NEOColorPickerHSLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEOColorPickerHSLViewController.h; sourceTree = "<group>"; };
+		B00D38A51A9A0A46005605CB /* NEOColorPickerHSLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEOColorPickerHSLViewController.m; sourceTree = "<group>"; };
+		B00D38A61A9A0A46005605CB /* NEOColorPickerHSLViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NEOColorPickerHSLViewController.xib; sourceTree = "<group>"; };
+		B00D38A71A9A0A46005605CB /* NEOColorPickerHueGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEOColorPickerHueGridViewController.h; sourceTree = "<group>"; };
+		B00D38A81A9A0A46005605CB /* NEOColorPickerHueGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEOColorPickerHueGridViewController.m; sourceTree = "<group>"; };
+		B00D38A91A9A0A46005605CB /* NEOColorPickerHueGridViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NEOColorPickerHueGridViewController.xib; sourceTree = "<group>"; };
+		B00D38AA1A9A0A46005605CB /* NEOColorPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEOColorPickerViewController.h; sourceTree = "<group>"; };
+		B00D38AB1A9A0A46005605CB /* NEOColorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEOColorPickerViewController.m; sourceTree = "<group>"; };
+		B00D38AC1A9A0A46005605CB /* NEOColorPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NEOColorPickerViewController.xib; sourceTree = "<group>"; };
+		B00D38AD1A9A0A46005605CB /* UIColor+NEOColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+NEOColor.h"; sourceTree = "<group>"; };
+		B00D38AE1A9A0A46005605CB /* UIColor+NEOColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+NEOColor.m"; sourceTree = "<group>"; };
+		B0203D4D1A98B77B009E245E /* ButtonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonNode.h; sourceTree = "<group>"; };
+		B0203D4E1A98B77B009E245E /* ButtonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonNode.m; sourceTree = "<group>"; };
+		B0203D501A98B78C009E245E /* ButtonDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonDelegate.h; sourceTree = "<group>"; };
+		B0203D511A98CF41009E245E /* frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = frame.png; sourceTree = "<group>"; };
+		B043041F1A9DFA57002D0672 /* StoryEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryEntity.h; sourceTree = "<group>"; };
+		B04304201A9DFA57002D0672 /* StoryEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryEntity.m; sourceTree = "<group>"; };
+		B09E62011B68C3FB004F7BC1 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
+		B09E62021B68C3FB004F7BC1 /* libTriggerPad.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTriggerPad.a; sourceTree = "<group>"; };
+		B0B914851A9B3F2E0023E367 /* Thivam.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Thivam.xcdatamodel; sourceTree = "<group>"; };
+		B0B914871A9B3F3B0023E367 /* DBAccessLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAccessLayer.h; sourceTree = "<group>"; };
+		B0B914881A9B3F3B0023E367 /* DBAccessLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAccessLayer.m; sourceTree = "<group>"; };
+		B0B9148C1A9B40370023E367 /* GestureEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureEntity.h; sourceTree = "<group>"; };
+		B0B9148D1A9B40370023E367 /* GestureEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureEntity.m; sourceTree = "<group>"; };
+		B0B914921A9B5B960023E367 /* SceneEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneEntity.h; sourceTree = "<group>"; };
+		B0B914931A9B5B960023E367 /* SceneEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneEntity.m; sourceTree = "<group>"; };
+		B0B9149E1A9B709A0023E367 /* SceneListControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneListControllerDelegate.h; sourceTree = "<group>"; };
+		B0EBD4F01A5EAEF500BF7BFA /* ap-effects.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ap-effects.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0EBD4F41A5EAEF500BF7BFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B0EBD4F51A5EAEF500BF7BFA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B0EBD4F71A5EAEF500BF7BFA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B0EBD4F81A5EAEF500BF7BFA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B0EBD4FA1A5EAEF500BF7BFA /* GameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		B0EBD4FB1A5EAEF500BF7BFA /* GameScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		B0EBD4FD1A5EAEF500BF7BFA /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		B0EBD4FF1A5EAEF500BF7BFA /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		B0EBD5001A5EAEF500BF7BFA /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		B0EBD5031A5EAEF500BF7BFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B0EBD5051A5EAEF500BF7BFA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B0EBD5081A5EAEF500BF7BFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		B0EBD50E1A5EAEF500BF7BFA /* ap-effectsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ap-effectsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0EBD5131A5EAEF500BF7BFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B0EBD5141A5EAEF500BF7BFA /* ap_effectsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ap_effectsTests.m; sourceTree = "<group>"; };
+		B0EBD53C1A5EB77400BF7BFA /* NodeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeObject.h; sourceTree = "<group>"; };
+		B0EBD53D1A5EB77400BF7BFA /* NodeObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeObject.m; sourceTree = "<group>"; };
+		B0EBD5891A67D3B600BF7BFA /* test@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test@2x.png"; sourceTree = "<group>"; };
+		B0EBD5921A712B1300BF7BFA /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		B0EBD5951A71308500BF7BFA /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
+		B0FF5E601A8CD984003AE476 /* ToneGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToneGenerator.h; sourceTree = "<group>"; };
+		B0FF5E611A8CD984003AE476 /* ToneGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToneGenerator.m; sourceTree = "<group>"; };
+		B0FF5E631A8E36B5003AE476 /* EffectCombos */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = EffectCombos; sourceTree = "<group>"; };
+		B0FF5E661A8E5C3F003AE476 /* GameSceneDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSceneDelegate.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B0EBD4ED1A5EAEF500BF7BFA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B09E62041B68C3FB004F7BC1 /* libTriggerPad.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0EBD50B1A5EAEF500BF7BFA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B00D389B1A9A0A36005605CB /* ColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				B00D389C1A9A0A46005605CB /* colorPicker.bundle */,
+				B00D389D1A9A0A46005605CB /* NEOColorPickerBaseViewController.h */,
+				B00D389E1A9A0A46005605CB /* NEOColorPickerBaseViewController.m */,
+				B00D389F1A9A0A46005605CB /* NEOColorPickerFavoritesViewController.h */,
+				B00D38A01A9A0A46005605CB /* NEOColorPickerFavoritesViewController.m */,
+				B00D38A11A9A0A46005605CB /* NEOColorPickerFavoritesViewController.xib */,
+				B00D38A21A9A0A46005605CB /* NEOColorPickerGradientView.h */,
+				B00D38A31A9A0A46005605CB /* NEOColorPickerGradientView.m */,
+				B00D38A41A9A0A46005605CB /* NEOColorPickerHSLViewController.h */,
+				B00D38A51A9A0A46005605CB /* NEOColorPickerHSLViewController.m */,
+				B00D38A61A9A0A46005605CB /* NEOColorPickerHSLViewController.xib */,
+				B00D38A71A9A0A46005605CB /* NEOColorPickerHueGridViewController.h */,
+				B00D38A81A9A0A46005605CB /* NEOColorPickerHueGridViewController.m */,
+				B00D38A91A9A0A46005605CB /* NEOColorPickerHueGridViewController.xib */,
+				B00D38AA1A9A0A46005605CB /* NEOColorPickerViewController.h */,
+				B00D38AB1A9A0A46005605CB /* NEOColorPickerViewController.m */,
+				B00D38AC1A9A0A46005605CB /* NEOColorPickerViewController.xib */,
+				B00D38AD1A9A0A46005605CB /* UIColor+NEOColor.h */,
+				B00D38AE1A9A0A46005605CB /* UIColor+NEOColor.m */,
+			);
+			name = ColorPicker;
+			sourceTree = "<group>";
+		};
+		B04C97A91A920ECC00D9CCD2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		B0B914831A9B3F100023E367 /* DBAccessLayer */ = {
+			isa = PBXGroup;
+			children = (
+				B0B9148B1A9B3FD40023E367 /* EntityHelpers */,
+				B0B9148A1A9B3FCC0023E367 /* Entities */,
+				B0B914871A9B3F3B0023E367 /* DBAccessLayer.h */,
+				B0B914881A9B3F3B0023E367 /* DBAccessLayer.m */,
+				B0B914841A9B3F2E0023E367 /* Thivam.xcdatamodeld */,
+			);
+			name = DBAccessLayer;
+			sourceTree = "<group>";
+		};
+		B0B9148A1A9B3FCC0023E367 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				B0B9148C1A9B40370023E367 /* GestureEntity.h */,
+				B0B9148D1A9B40370023E367 /* GestureEntity.m */,
+				B0B914921A9B5B960023E367 /* SceneEntity.h */,
+				B0B914931A9B5B960023E367 /* SceneEntity.m */,
+				B043041F1A9DFA57002D0672 /* StoryEntity.h */,
+				B04304201A9DFA57002D0672 /* StoryEntity.m */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		B0B9148B1A9B3FD40023E367 /* EntityHelpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = EntityHelpers;
+			sourceTree = "<group>";
+		};
+		B0EBD4E71A5EAEF500BF7BFA = {
+			isa = PBXGroup;
+			children = (
+				B09E62011B68C3FB004F7BC1 /* include */,
+				B09E62021B68C3FB004F7BC1 /* libTriggerPad.a */,
+				B0EBD4F21A5EAEF500BF7BFA /* ap-effects */,
+				B0EBD5111A5EAEF500BF7BFA /* ap-effectsTests */,
+				B0EBD4F11A5EAEF500BF7BFA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B0EBD4F11A5EAEF500BF7BFA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B0EBD4F01A5EAEF500BF7BFA /* ap-effects.app */,
+				B0EBD50E1A5EAEF500BF7BFA /* ap-effectsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B0EBD4F21A5EAEF500BF7BFA /* ap-effects */ = {
+			isa = PBXGroup;
+			children = (
+				B0B914831A9B3F100023E367 /* DBAccessLayer */,
+				B00D389B1A9A0A36005605CB /* ColorPicker */,
+				B04C97A91A920ECC00D9CCD2 /* Helpers */,
+				B0FF5E651A8E5BF4003AE476 /* Delegates */,
+				B0FF5E5F1A8CD970003AE476 /* Audio */,
+				B0EBD5881A67D3AD00BF7BFA /* Resources */,
+				B0EBD53B1A5EB75900BF7BFA /* SceneObjects */,
+				B0EBD5371A5EB57000BF7BFA /* ViewControllers */,
+				B0EBD5361A5EB56800BF7BFA /* Scenes */,
+				B0EBD4F71A5EAEF500BF7BFA /* AppDelegate.h */,
+				B0EBD4F81A5EAEF500BF7BFA /* AppDelegate.m */,
+				B0EBD5051A5EAEF500BF7BFA /* Images.xcassets */,
+				B0EBD5071A5EAEF500BF7BFA /* LaunchScreen.xib */,
+				B0EBD4F31A5EAEF500BF7BFA /* Supporting Files */,
+			);
+			path = "ap-effects";
+			sourceTree = "<group>";
+		};
+		B0EBD4F31A5EAEF500BF7BFA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B0EBD4F41A5EAEF500BF7BFA /* Info.plist */,
+				B0EBD4F51A5EAEF500BF7BFA /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B0EBD5111A5EAEF500BF7BFA /* ap-effectsTests */ = {
+			isa = PBXGroup;
+			children = (
+				B0EBD5141A5EAEF500BF7BFA /* ap_effectsTests.m */,
+				B0EBD5121A5EAEF500BF7BFA /* Supporting Files */,
+			);
+			path = "ap-effectsTests";
+			sourceTree = "<group>";
+		};
+		B0EBD5121A5EAEF500BF7BFA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B0EBD5131A5EAEF500BF7BFA /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B0EBD5361A5EB56800BF7BFA /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				B0EBD4FA1A5EAEF500BF7BFA /* GameScene.h */,
+				B0EBD4FB1A5EAEF500BF7BFA /* GameScene.m */,
+				B0EBD4FD1A5EAEF500BF7BFA /* GameScene.sks */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
+		B0EBD5371A5EB57000BF7BFA /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B0EBD5021A5EAEF500BF7BFA /* Main.storyboard */,
+				B0EBD4FF1A5EAEF500BF7BFA /* GameViewController.h */,
+				B0EBD5001A5EAEF500BF7BFA /* GameViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B0EBD53B1A5EB75900BF7BFA /* SceneObjects */ = {
+			isa = PBXGroup;
+			children = (
+				B0EBD53C1A5EB77400BF7BFA /* NodeObject.h */,
+				B0EBD53D1A5EB77400BF7BFA /* NodeObject.m */,
+				B0203D4D1A98B77B009E245E /* ButtonNode.h */,
+				B0203D4E1A98B77B009E245E /* ButtonNode.m */,
+			);
+			name = SceneObjects;
+			sourceTree = "<group>";
+		};
+		B0EBD5881A67D3AD00BF7BFA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B0203D511A98CF41009E245E /* frame.png */,
+				B0EBD5951A71308500BF7BFA /* camera.png */,
+				B0EBD5891A67D3B600BF7BFA /* test@2x.png */,
+				B0EBD5921A712B1300BF7BFA /* spark.png */,
+				B0FF5E631A8E36B5003AE476 /* EffectCombos */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		B0FF5E5F1A8CD970003AE476 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				B0FF5E601A8CD984003AE476 /* ToneGenerator.h */,
+				B0FF5E611A8CD984003AE476 /* ToneGenerator.m */,
+			);
+			name = Audio;
+			sourceTree = "<group>";
+		};
+		B0FF5E651A8E5BF4003AE476 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				B0FF5E661A8E5C3F003AE476 /* GameSceneDelegate.h */,
+				B0203D501A98B78C009E245E /* ButtonDelegate.h */,
+				B0B9149E1A9B709A0023E367 /* SceneListControllerDelegate.h */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B0EBD4EF1A5EAEF500BF7BFA /* ap-effects */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0EBD5181A5EAEF500BF7BFA /* Build configuration list for PBXNativeTarget "ap-effects" */;
+			buildPhases = (
+				B0EBD4EC1A5EAEF500BF7BFA /* Sources */,
+				B0EBD4ED1A5EAEF500BF7BFA /* Frameworks */,
+				B0EBD4EE1A5EAEF500BF7BFA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ap-effects";
+			productName = "ap-effects";
+			productReference = B0EBD4F01A5EAEF500BF7BFA /* ap-effects.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B0EBD50D1A5EAEF500BF7BFA /* ap-effectsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0EBD51B1A5EAEF500BF7BFA /* Build configuration list for PBXNativeTarget "ap-effectsTests" */;
+			buildPhases = (
+				B0EBD50A1A5EAEF500BF7BFA /* Sources */,
+				B0EBD50B1A5EAEF500BF7BFA /* Frameworks */,
+				B0EBD50C1A5EAEF500BF7BFA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B0EBD5101A5EAEF500BF7BFA /* PBXTargetDependency */,
+			);
+			name = "ap-effectsTests";
+			productName = "ap-effectsTests";
+			productReference = B0EBD50E1A5EAEF500BF7BFA /* ap-effectsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B0EBD4E81A5EAEF500BF7BFA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = ivanborsa;
+				TargetAttributes = {
+					B0EBD4EF1A5EAEF500BF7BFA = {
+						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = Y262LAFNWV;
+					};
+					B0EBD50D1A5EAEF500BF7BFA = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = B0EBD4EF1A5EAEF500BF7BFA;
+					};
+				};
+			};
+			buildConfigurationList = B0EBD4EB1A5EAEF500BF7BFA /* Build configuration list for PBXProject "ap-effects" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B0EBD4E71A5EAEF500BF7BFA;
+			productRefGroup = B0EBD4F11A5EAEF500BF7BFA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B0EBD4EF1A5EAEF500BF7BFA /* ap-effects */,
+				B0EBD50D1A5EAEF500BF7BFA /* ap-effectsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B0EBD4EE1A5EAEF500BF7BFA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0EBD5091A5EAEF500BF7BFA /* LaunchScreen.xib in Resources */,
+				B00D38B71A9A0A46005605CB /* NEOColorPickerHueGridViewController.xib in Resources */,
+				B0EBD5961A71308500BF7BFA /* camera.png in Resources */,
+				B09E62031B68C3FB004F7BC1 /* include in Resources */,
+				B0EBD58A1A67D3B600BF7BFA /* test@2x.png in Resources */,
+				B00D38AF1A9A0A46005605CB /* colorPicker.bundle in Resources */,
+				B0EBD5941A712B1300BF7BFA /* spark.png in Resources */,
+				B0FF5E641A8E36B5003AE476 /* EffectCombos in Resources */,
+				B0203D521A98CF41009E245E /* frame.png in Resources */,
+				B00D38B91A9A0A46005605CB /* NEOColorPickerViewController.xib in Resources */,
+				B0EBD5061A5EAEF500BF7BFA /* Images.xcassets in Resources */,
+				B00D38B21A9A0A46005605CB /* NEOColorPickerFavoritesViewController.xib in Resources */,
+				B00D38B51A9A0A46005605CB /* NEOColorPickerHSLViewController.xib in Resources */,
+				B0EBD4FE1A5EAEF500BF7BFA /* GameScene.sks in Resources */,
+				B0EBD5041A5EAEF500BF7BFA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0EBD50C1A5EAEF500BF7BFA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B0EBD4EC1A5EAEF500BF7BFA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0EBD5011A5EAEF500BF7BFA /* GameViewController.m in Sources */,
+				B0B914861A9B3F2E0023E367 /* Thivam.xcdatamodeld in Sources */,
+				B00D38B31A9A0A46005605CB /* NEOColorPickerGradientView.m in Sources */,
+				B04304211A9DFA57002D0672 /* StoryEntity.m in Sources */,
+				B00D38B41A9A0A46005605CB /* NEOColorPickerHSLViewController.m in Sources */,
+				B0EBD4F91A5EAEF500BF7BFA /* AppDelegate.m in Sources */,
+				B0EBD4FC1A5EAEF500BF7BFA /* GameScene.m in Sources */,
+				B0EBD4F61A5EAEF500BF7BFA /* main.m in Sources */,
+				B00D38B81A9A0A46005605CB /* NEOColorPickerViewController.m in Sources */,
+				B00D38B01A9A0A46005605CB /* NEOColorPickerBaseViewController.m in Sources */,
+				B0FF5E621A8CD984003AE476 /* ToneGenerator.m in Sources */,
+				B0EBD53E1A5EB77400BF7BFA /* NodeObject.m in Sources */,
+				B00D38B11A9A0A46005605CB /* NEOColorPickerFavoritesViewController.m in Sources */,
+				B0B914891A9B3F3B0023E367 /* DBAccessLayer.m in Sources */,
+				B0B914941A9B5B960023E367 /* SceneEntity.m in Sources */,
+				B0B9148E1A9B40370023E367 /* GestureEntity.m in Sources */,
+				B00D38B61A9A0A46005605CB /* NEOColorPickerHueGridViewController.m in Sources */,
+				B00D38BA1A9A0A46005605CB /* UIColor+NEOColor.m in Sources */,
+				B0203D4F1A98B77B009E245E /* ButtonNode.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0EBD50A1A5EAEF500BF7BFA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0EBD5151A5EAEF500BF7BFA /* ap_effectsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B0EBD5101A5EAEF500BF7BFA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B0EBD4EF1A5EAEF500BF7BFA /* ap-effects */;
+			targetProxy = B0EBD50F1A5EAEF500BF7BFA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B0EBD5021A5EAEF500BF7BFA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B0EBD5031A5EAEF500BF7BFA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B0EBD5071A5EAEF500BF7BFA /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B0EBD5081A5EAEF500BF7BFA /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B0EBD5161A5EAEF500BF7BFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B0EBD5171A5EAEF500BF7BFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B0EBD5191A5EAEF500BF7BFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					$SOURCE_ROOT/include/TriggerPad,
+				);
+				INFOPLIST_FILE = "ap-effects/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ap-effects",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "a1abcb81-9946-4994-b01c-5b111187e482";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B0EBD51A1A5EAEF500BF7BFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					$SOURCE_ROOT/include/TriggerPad,
+				);
+				INFOPLIST_FILE = "ap-effects/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ap-effects",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "a1abcb81-9946-4994-b01c-5b111187e482";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B0EBD51C1A5EAEF500BF7BFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ap-effectsTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ap-effects.app/ap-effects";
+			};
+			name = Debug;
+		};
+		B0EBD51D1A5EAEF500BF7BFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ap-effectsTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ap-effects.app/ap-effects";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B0EBD4EB1A5EAEF500BF7BFA /* Build configuration list for PBXProject "ap-effects" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0EBD5161A5EAEF500BF7BFA /* Debug */,
+				B0EBD5171A5EAEF500BF7BFA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B0EBD5181A5EAEF500BF7BFA /* Build configuration list for PBXNativeTarget "ap-effects" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0EBD5191A5EAEF500BF7BFA /* Debug */,
+				B0EBD51A1A5EAEF500BF7BFA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B0EBD51B1A5EAEF500BF7BFA /* Build configuration list for PBXNativeTarget "ap-effectsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0EBD51C1A5EAEF500BF7BFA /* Debug */,
+				B0EBD51D1A5EAEF500BF7BFA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B0B914841A9B3F2E0023E367 /* Thivam.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B0B914851A9B3F2E0023E367 /* Thivam.xcdatamodel */,
+			);
+			currentVersion = B0B914851A9B3F2E0023E367 /* Thivam.xcdatamodel */;
+			path = Thivam.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = B0EBD4E81A5EAEF500BF7BFA /* Project object */;
+}

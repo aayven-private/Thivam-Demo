@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14C109" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="GestureEntity" representedClassName="GestureEntity" syncable="YES">
+        <attribute name="effectName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gestureColor" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="gestureId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="involvedNodeCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="isDisappearing" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="randomizeColor" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="sceneId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startPoint" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="triggerPoints" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="SceneEntity" representedClassName="SceneEntity" syncable="YES">
+        <attribute name="sceneId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sceneName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storyId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="StoryEntity" representedClassName="StoryEntity" syncable="YES">
+        <attribute name="storyId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storyName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="GestureEntity" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="SceneEntity" positionX="-54" positionY="27" width="128" height="90"/>
+        <element name="StoryEntity" positionX="-54" positionY="45" width="128" height="75"/>
+    </elements>
+</model>
