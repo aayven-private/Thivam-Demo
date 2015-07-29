@@ -204,7 +204,7 @@
     _effectConnection.autoFireDispersion = 0.03;
     _effectConnection.nodeValue = [NSNumber numberWithDouble:1.0];
     _effectConnection.isPipedConnection = NO;
-    _effectConnection.connectionMap = [NSMutableArray arrayWithObjects:kNeighborLeft, kNeighborRight, kNeighborTop, kNeighborBottom, nil];
+    _effectConnection.connectionMap = [NSMutableArray arrayWithObjects:kNeighborLeft, kNeighborRight, kNeighborTop, kNeighborBottom, kNeighborBottomLeft, kNeighborBottomRight, kNeighborTopLeft, kNeighborTopRight, nil];
     //_effectConnection.firePriorities = [NSMutableArray arrayWithObjects:@"b", @"l,r", nil];
     //_effectConnection.connectionFireThreshold = .5;
     
@@ -219,14 +219,14 @@
     self.nextColor = [self.targetColors objectAtIndex:[CommonTools getRandomNumberFromInt:0 toInt:(int)self.targetColors.count - 1]];
     [self loadCombo];
     
-    UITouch *touch = [touches anyObject];
+    /*UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:_effectPadHolder];
     
     int xCoord = (_gridSize.width * (location.x + _effectPadHolder.size.width / 2)) / _effectPadHolder.size.width;
     int yCoord = (_gridSize.height * (location.y + _effectPadHolder.size.height / 2)) / _effectPadHolder.size.height;
     
     _triggerPoint = CGPointMake(xCoord, yCoord);
-    [_effectPad triggerNodeAtPosition:_triggerPoint forActionType:@"action" withuserInfo:[NSMutableDictionary dictionary] withNodeReset:NO withActionId:_currentActionId];
+    [_effectPad triggerNodeAtPosition:_triggerPoint forActionType:@"action" withuserInfo:[NSMutableDictionary dictionary] withNodeReset:NO withActionId:_currentActionId];*/
     
 }
 
@@ -237,14 +237,14 @@
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    /*UITouch *touch = [touches anyObject];
+    UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:_effectPadHolder];
     
     int xCoord = (_gridSize.width * (location.x + _effectPadHolder.size.width / 2)) / _effectPadHolder.size.width;
     int yCoord = (_gridSize.height * (location.y + _effectPadHolder.size.height / 2)) / _effectPadHolder.size.height;
     
     _triggerPoint = CGPointMake(xCoord, yCoord);
-    [_effectPad triggerNodeAtPosition:_triggerPoint forActionType:@"action" withuserInfo:[NSMutableDictionary dictionary] withNodeReset:NO withActionId:_currentActionId];*/
+    [_effectPad triggerNodeAtPosition:_triggerPoint forActionType:@"action" withuserInfo:[NSMutableDictionary dictionary] withNodeReset:NO withActionId:_currentActionId];
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -292,9 +292,11 @@
         NodeObject *targetNode = (NodeObject *)target;
         
         weakSelf.currentActionNodes++;
-        [targetNode runAction:[SKAction sequence:@[[SKAction waitForDuration:.3], [SKAction runBlock:^{
+        /*[targetNode runAction:[SKAction sequence:@[[SKAction waitForDuration:.3], [SKAction runBlock:^{
             targetNode.color = [CommonTools getRandomColorCloseToColor:weakSelf.nextColor withDispersion:.3];
-        }]]]];
+        }]]]];*/
+        
+        [targetNode runAction:[SKAction colorizeWithColor:weakSelf.nextColor colorBlendFactor:1 duration:.8]];
 
         if (weakSelf.currentActionNodes == (weakSelf.gridSize.width) * (weakSelf.gridSize.height)) {
             weakSelf.currentActionNodes = 0;
@@ -610,9 +612,11 @@
         NodeObject *targetNode = (NodeObject *)target;
         
         weakSelf.currentActionNodes++;
-        [targetNode runAction:[SKAction sequence:@[[SKAction waitForDuration:.3], [SKAction runBlock:^{
+        /*[targetNode runAction:[SKAction sequence:@[[SKAction waitForDuration:.3], [SKAction runBlock:^{
             targetNode.color = [CommonTools getRandomColorCloseToColor:weakSelf.nextColor withDispersion:.3];
-        }]]]];
+        }]]]];*/
+        
+        [targetNode runAction:[SKAction colorizeWithColor:[CommonTools getRandomColorCloseToColor:weakSelf.nextColor withDispersion:.3] colorBlendFactor:1 duration:1.5]];
         
         if (weakSelf.currentActionNodes == (weakSelf.gridSize.width) * (weakSelf.gridSize.height)) {
             weakSelf.currentActionNodes = 0;
