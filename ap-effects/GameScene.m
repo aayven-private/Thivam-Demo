@@ -177,7 +177,7 @@
     
     _gridSize = CGSizeMake(25, 40);
     _nodeSize = CGSizeMake(_effectPadHolder.size.width / _gridSize.width, _effectPadHolder.size.height / _gridSize.height);
-    __block __weak GameScene *weakSelf = self;
+    __weak GameScene *weakSelf = self;
     self.effectPad = [[TriggerPad alloc] initGridWithSize:_gridSize andNodeInitBlock:^id<TPActionNodeActor>(int row, int column) {
         
         NodeObject *node = [[NodeObject alloc] initWithColor:weakSelf.baseColor size:CGSizeMake(_nodeSize.width - .5, _nodeSize.height - .5)];
@@ -204,14 +204,13 @@
     _effectConnection.autoFireDispersion = 0.03;
     _effectConnection.nodeValue = [NSNumber numberWithDouble:1.0];
     _effectConnection.isPipedConnection = NO;
-    _effectConnection.connectionMap = [NSMutableArray arrayWithObjects:kNeighborLeft, kNeighborRight, kNeighborTop, kNeighborBottom, kNeighborBottomLeft, kNeighborBottomRight, kNeighborTopLeft, kNeighborTopRight, nil];
+    _effectConnection.connectionMap = [NSMutableArray arrayWithObjects:kNeighborLeft, kNeighborRight, kNeighborTop, kNeighborBottom, nil];
     //_effectConnection.firePriorities = [NSMutableArray arrayWithObjects:@"b", @"l,r", nil];
     //_effectConnection.connectionFireThreshold = .5;
     
     [self.effectPad loadConnectionMapWithDescriptor:_effectConnection forActionType:@"action"];
 
     [self loadEffects];
-    [self loadCombo];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -285,7 +284,7 @@
 
 -(void)loadEffects_simple
 {
-    __weak __block GameScene *weakSelf = self;
+    __weak GameScene *weakSelf = self;
     
     _permAct = [[TPActionDescriptor alloc] init];
     _permAct.action = ^(id<TPActionNodeActor>target, NSDictionary *userInfo) {
@@ -504,7 +503,7 @@
     //--------------------
     
     [_effectsByNames setObject:@[waveEffect, _permAct] forKey:@"Wave"];
-    //[_effectsByNames setObject:@[reverseWave, _permAct] forKey:@"Wave2"];
+    [_effectsByNames setObject:@[reverseWave, _permAct] forKey:@"Wave2"];
     [_effectsByNames setObject:@[tornado, _permAct] forKey:@"Tornado"];
     [_effectsByNames setObject:@[hoolahoop, _permAct] forKey:@"HoolaHoop"];
     [_effectsByNames setObject:@[rotate, _permAct] forKey:@"Rotate"];
@@ -512,7 +511,7 @@
     [_effectsByNames setObject:@[pulse, _permAct] forKey:@"Pulse"];
     [_effectsByNames setObject:@[depulse, _permAct] forKey:@"Depulse"];
     [_effectsByNames setObject:@[shrink2, _permAct] forKey:@"Shrink2"];
-    //[_effectsByNames setObject:@[whiplash, _permAct] forKey:@"Whiplash"];
+    [_effectsByNames setObject:@[whiplash, _permAct] forKey:@"Whiplash"];
     [_effectsByNames setObject:@[bulb, _permAct] forKey:@"Bulb"];
     
     [_effects addObject:waveEffect];
@@ -605,7 +604,7 @@
 
 -(void)loadEffects
 {
-    __weak __block GameScene *weakSelf = self;
+    __weak GameScene *weakSelf = self;
     
     _permAct = [[TPActionDescriptor alloc] init];
     _permAct.action = ^(id<TPActionNodeActor>target, NSDictionary *userInfo) {
@@ -1002,6 +1001,19 @@
     NSArray *cmb11 = @[shrink, swarm];
     NSArray *cmb12 = @[shrink, follow];
     NSArray *cmb13 = @[shrink, follow, swarm2];
+    
+    [_effectsByNames setObject:@[waveEffect, _permAct] forKey:@"waveEffect"];
+    [_effectsByNames setObject:@[reverseWave, _permAct] forKey:@"reverseWave"];
+    [_effectsByNames setObject:@[closer, _permAct] forKey:@"closer"];
+    [_effectsByNames setObject:@[mirror_x, _permAct] forKey:@"mirror_x"];
+    [_effectsByNames setObject:@[mirror_y, _permAct] forKey:@"mirror_y"];
+    [_effectsByNames setObject:@[pushEffect, _permAct] forKey:@"pushEffect"];
+    [_effectsByNames setObject:@[swarm2, _permAct] forKey:@"swarm2"];
+    [_effectsByNames setObject:@[select, _permAct] forKey:@"select"];
+    [_effectsByNames setObject:@[follow, _permAct] forKey:@"follow"];
+    [_effectsByNames setObject:@[rotate, _permAct] forKey:@"rotate"];
+    [_effectsByNames setObject:@[swarm, _permAct] forKey:@"swarm"];
+    [_effectsByNames setObject:@[shrink, _permAct] forKey:@"shrink"];
     
     [_combos addObjectsFromArray:@[cmb1, cmb2, cmb3, cmb4, cmb5, cmb6, cmb7, cmb8, cmb9, cmb10, cmb11, cmb12, cmb13]];
     

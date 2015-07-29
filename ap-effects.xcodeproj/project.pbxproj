@@ -22,8 +22,8 @@
 		B0203D4F1A98B77B009E245E /* ButtonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B0203D4E1A98B77B009E245E /* ButtonNode.m */; };
 		B0203D521A98CF41009E245E /* frame.png in Resources */ = {isa = PBXBuildFile; fileRef = B0203D511A98CF41009E245E /* frame.png */; };
 		B04304211A9DFA57002D0672 /* StoryEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = B04304201A9DFA57002D0672 /* StoryEntity.m */; };
-		B09E620C1B68D5CE004F7BC1 /* include in Resources */ = {isa = PBXBuildFile; fileRef = B09E620A1B68D5CE004F7BC1 /* include */; };
-		B09E620D1B68D5CE004F7BC1 /* libTriggerPad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B09E620B1B68D5CE004F7BC1 /* libTriggerPad.a */; };
+		B09E62161B690FC6004F7BC1 /* include in Resources */ = {isa = PBXBuildFile; fileRef = B09E62141B690FC6004F7BC1 /* include */; };
+		B09E62171B690FC6004F7BC1 /* libTriggerPad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B09E62151B690FC6004F7BC1 /* libTriggerPad.a */; };
 		B0B914861A9B3F2E0023E367 /* Thivam.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0B914841A9B3F2E0023E367 /* Thivam.xcdatamodeld */; };
 		B0B914891A9B3F3B0023E367 /* DBAccessLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B914881A9B3F3B0023E367 /* DBAccessLayer.m */; };
 		B0B9148E1A9B40370023E367 /* GestureEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B9148D1A9B40370023E367 /* GestureEntity.m */; };
@@ -81,8 +81,8 @@
 		B0203D511A98CF41009E245E /* frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = frame.png; sourceTree = "<group>"; };
 		B043041F1A9DFA57002D0672 /* StoryEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryEntity.h; sourceTree = "<group>"; };
 		B04304201A9DFA57002D0672 /* StoryEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryEntity.m; sourceTree = "<group>"; };
-		B09E620A1B68D5CE004F7BC1 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
-		B09E620B1B68D5CE004F7BC1 /* libTriggerPad.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTriggerPad.a; sourceTree = "<group>"; };
+		B09E62141B690FC6004F7BC1 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
+		B09E62151B690FC6004F7BC1 /* libTriggerPad.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTriggerPad.a; sourceTree = "<group>"; };
 		B0B914851A9B3F2E0023E367 /* Thivam.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Thivam.xcdatamodel; sourceTree = "<group>"; };
 		B0B914871A9B3F3B0023E367 /* DBAccessLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAccessLayer.h; sourceTree = "<group>"; };
 		B0B914881A9B3F3B0023E367 /* DBAccessLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAccessLayer.m; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B09E620D1B68D5CE004F7BC1 /* libTriggerPad.a in Frameworks */,
+				B09E62171B690FC6004F7BC1 /* libTriggerPad.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,8 +205,8 @@
 		B0EBD4E71A5EAEF500BF7BFA = {
 			isa = PBXGroup;
 			children = (
-				B09E620A1B68D5CE004F7BC1 /* include */,
-				B09E620B1B68D5CE004F7BC1 /* libTriggerPad.a */,
+				B09E62141B690FC6004F7BC1 /* include */,
+				B09E62151B690FC6004F7BC1 /* libTriggerPad.a */,
 				B0EBD4F21A5EAEF500BF7BFA /* ap-effects */,
 				B0EBD5111A5EAEF500BF7BFA /* ap-effectsTests */,
 				B0EBD4F11A5EAEF500BF7BFA /* Products */,
@@ -415,7 +415,7 @@
 				B0EBD5091A5EAEF500BF7BFA /* LaunchScreen.xib in Resources */,
 				B00D38B71A9A0A46005605CB /* NEOColorPickerHueGridViewController.xib in Resources */,
 				B0EBD5961A71308500BF7BFA /* camera.png in Resources */,
-				B09E620C1B68D5CE004F7BC1 /* include in Resources */,
+				B09E62161B690FC6004F7BC1 /* include in Resources */,
 				B0EBD58A1A67D3B600BF7BFA /* test@2x.png in Resources */,
 				B00D38AF1A9A0A46005605CB /* colorPicker.bundle in Resources */,
 				B0EBD5941A712B1300BF7BFA /* spark.png in Resources */,
