@@ -180,7 +180,7 @@
     __weak GameScene *weakSelf = self;
     self.effectPad = [[TriggerPad alloc] initGridWithSize:_gridSize andNodeInitBlock:^id<TPActionNodeActor>(int row, int column) {
         
-        NodeObject *node = [[NodeObject alloc] initWithColor:weakSelf.baseColor size:CGSizeMake(_nodeSize.width, _nodeSize.height)];
+        NodeObject *node = [[NodeObject alloc] initWithColor:[CommonTools getRandomColorCloseToColor:weakSelf.nextColor withDispersion:.4] size:CGSizeMake(_nodeSize.width + 1, _nodeSize.height + 1)];
 
         node.anchorPoint = CGPointMake(.5, .5);
         CGPoint blockPosition = CGPointMake(column * weakSelf.nodeSize.width - weakSelf.effectPadHolder.size.width / 2.0 + weakSelf.nodeSize.width / 2.0, row * weakSelf.nodeSize.height - weakSelf.effectPadHolder.size.height / 2.0 + weakSelf.nodeSize.height / 2.0);
