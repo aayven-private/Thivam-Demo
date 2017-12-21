@@ -136,7 +136,7 @@
 -(void)initScene
 {
 //    NSLog(@"Self size: %f:%f", self.size.width, self.size.height);
-    self.baseImage = [UIImage imageNamed:@"test3"];
+    self.baseImage = [UIImage imageNamed:@"marta"];
     CGSize imageSize = self.baseImage.size;
     
     self.even = false;
@@ -252,7 +252,7 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     self.even = !self.even;
-    self.baseImage = self.even ? [UIImage imageNamed:@"test2"] : [UIImage imageNamed:@"test3"];
+    self.baseImage = self.even ? [UIImage imageNamed:@"ivan"] : [UIImage imageNamed:@"marta"];
     CGSize imageSize = self.baseImage.size;
     
     
