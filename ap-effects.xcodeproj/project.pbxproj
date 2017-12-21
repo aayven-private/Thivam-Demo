@@ -22,6 +22,8 @@
 		B0203D4F1A98B77B009E245E /* ButtonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B0203D4E1A98B77B009E245E /* ButtonNode.m */; };
 		B0203D521A98CF41009E245E /* frame.png in Resources */ = {isa = PBXBuildFile; fileRef = B0203D511A98CF41009E245E /* frame.png */; };
 		B04304211A9DFA57002D0672 /* StoryEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = B04304201A9DFA57002D0672 /* StoryEntity.m */; };
+		B04DB09F1FEC35B300B4C4EC /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = B04DB09E1FEC35B300B4C4EC /* test2.png */; };
+		B04DB0A11FEC374F00B4C4EC /* test3.png in Resources */ = {isa = PBXBuildFile; fileRef = B04DB0A01FEC374E00B4C4EC /* test3.png */; };
 		B09E62161B690FC6004F7BC1 /* include in Resources */ = {isa = PBXBuildFile; fileRef = B09E62141B690FC6004F7BC1 /* include */; };
 		B09E62171B690FC6004F7BC1 /* libTriggerPad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B09E62151B690FC6004F7BC1 /* libTriggerPad.a */; };
 		B0B914861A9B3F2E0023E367 /* Thivam.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0B914841A9B3F2E0023E367 /* Thivam.xcdatamodeld */; };
@@ -81,6 +83,8 @@
 		B0203D511A98CF41009E245E /* frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = frame.png; sourceTree = "<group>"; };
 		B043041F1A9DFA57002D0672 /* StoryEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryEntity.h; sourceTree = "<group>"; };
 		B04304201A9DFA57002D0672 /* StoryEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryEntity.m; sourceTree = "<group>"; };
+		B04DB09E1FEC35B300B4C4EC /* test2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test2.png; sourceTree = "<group>"; };
+		B04DB0A01FEC374E00B4C4EC /* test3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test3.png; sourceTree = "<group>"; };
 		B09E62141B690FC6004F7BC1 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
 		B09E62151B690FC6004F7BC1 /* libTriggerPad.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTriggerPad.a; sourceTree = "<group>"; };
 		B0B914851A9B3F2E0023E367 /* Thivam.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Thivam.xcdatamodel; sourceTree = "<group>"; };
@@ -303,7 +307,9 @@
 		B0EBD5881A67D3AD00BF7BFA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B04DB0A01FEC374E00B4C4EC /* test3.png */,
 				B0203D511A98CF41009E245E /* frame.png */,
+				B04DB09E1FEC35B300B4C4EC /* test2.png */,
 				B0EBD5951A71308500BF7BFA /* camera.png */,
 				B0EBD5891A67D3B600BF7BFA /* test@2x.png */,
 				B0EBD5921A712B1300BF7BFA /* spark.png */,
@@ -427,7 +433,9 @@
 				B00D38B21A9A0A46005605CB /* NEOColorPickerFavoritesViewController.xib in Resources */,
 				B00D38B51A9A0A46005605CB /* NEOColorPickerHSLViewController.xib in Resources */,
 				B0EBD4FE1A5EAEF500BF7BFA /* GameScene.sks in Resources */,
+				B04DB09F1FEC35B300B4C4EC /* test2.png in Resources */,
 				B0EBD5041A5EAEF500BF7BFA /* Main.storyboard in Resources */,
+				B04DB0A11FEC374F00B4C4EC /* test3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

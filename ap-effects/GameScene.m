@@ -58,7 +58,7 @@
 
 //------
 @property (nonatomic) CGSize nodeSize;
-//@property (nonatomic) UIImage *baseImage;
+@property (nonatomic) UIImage *baseImage;
 //@property (nonatomic) CGSize imageGridSize;
 
 @property (nonatomic) CGPoint lastActingNodePosition;
@@ -75,6 +75,8 @@
 @property (nonatomic) int colorCycle;
 
 @property (nonatomic) double effectValue;
+
+@property (nonatomic) Boolean even;
 
 //---------
 
@@ -133,6 +135,30 @@
 
 -(void)initScene
 {
+//    NSLog(@"Self size: %f:%f", self.size.width, self.size.height);
+    self.baseImage = [UIImage imageNamed:@"test3"];
+    CGSize imageSize = self.baseImage.size;
+    
+    self.even = false;
+    
+    CGSize translatedSize = CGSizeZero;
+    double ratio = 1.0;
+    
+    if (imageSize.height / imageSize.width > self.size.height / self.size.width) {
+        // Image is "longer" than screen
+        ratio = self.size.height / imageSize.height;
+        translatedSize = CGSizeMake(imageSize.width * ratio, self.size.height);
+    } else {
+        // Image is "wider" then the screen
+        ratio = self.size.width / imageSize.width;
+        translatedSize = CGSizeMake(self.size.width, imageSize.height * ratio);
+    }
+    
+//    NSLog(@"Size before: %f:%f", self.baseImage.size.width, self.baseImage.size.height);
+    self.baseImage = [self imageWithImage:self.baseImage convertToSize:self.size];
+    
+//    NSLog(@"Size after: %f:%f", self.baseImage.size.width, self.baseImage.size.height);
+    
     self.selectedNode = nil;
     self.backgroundColor = [UIColor whiteColor];
     self.currentEffectIndex = 0;
@@ -175,19 +201,30 @@
     _effectPadHolder.position = CGPointMake(0, 0);
     [self addChild:_effectPadHolder];
     
-    _gridSize = CGSizeMake(40, 60);
+    _gridSize = CGSizeMake(60, 90);
     _nodeSize = CGSizeMake(_effectPadHolder.size.width / _gridSize.width, _effectPadHolder.size.height / _gridSize.height);
     __weak GameScene *weakSelf = self;
     self.effectPad = [[TriggerPad alloc] initGridWithSize:_gridSize andNodeInitBlock:^id<TPActionNodeActor>(int row, int column) {
+        int translatedColumn = abs(column - weakSelf.gridSize.width);
+        int translatedRow = abs(row - weakSelf.gridSize.height);
         
-        NodeObject *node = [[NodeObject alloc] initWithColor:[CommonTools getRandomColorCloseToColor:weakSelf.nextColor withDispersion:.4] size:CGSizeMake(_nodeSize.width + 1, _nodeSize.height + 1)];
+        CGPoint blockPosition = CGPointMake(column * weakSelf.nodeSize.width - weakSelf.effectPadHolder.size.width / 2.0 + weakSelf.nodeSize.width / 2.0, row * weakSelf.nodeSize.height - weakSelf.effectPadHolder.size.height / 2.0 + weakSelf.nodeSize.height / 2.0);
+        
+        CGPoint pixelPosition = CGPointMake(column * weakSelf.nodeSize.width + weakSelf.nodeSize.width / 2.0, translatedRow * weakSelf.nodeSize.height + weakSelf.nodeSize.height / 2.0);
+        
+        UIColor *pixelColor = [weakSelf getPixelColorAtLocation:pixelPosition onImage:weakSelf.baseImage];
+        
+        NodeObject *node = [[NodeObject alloc] initWithColor:pixelColor size:CGSizeMake(_nodeSize.width + 1, _nodeSize.height + 1)];
 
         node.anchorPoint = CGPointMake(.5, .5);
-        CGPoint blockPosition = CGPointMake(column * weakSelf.nodeSize.width - weakSelf.effectPadHolder.size.width / 2.0 + weakSelf.nodeSize.width / 2.0, row * weakSelf.nodeSize.height - weakSelf.effectPadHolder.size.height / 2.0 + weakSelf.nodeSize.height / 2.0);
+        
+        
         node.position = blockPosition;
+        
         node.initialScreenPosition = blockPosition;
         node.columnIndex = column;
         node.rowIndex = row;
+        
         
         [weakSelf.effectPadHolder addChild:node];
         
@@ -214,9 +251,30 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    self.even = !self.even;
+    self.baseImage = self.even ? [UIImage imageNamed:@"test2"] : [UIImage imageNamed:@"test3"];
+    CGSize imageSize = self.baseImage.size;
+    
+    
+    CGSize translatedSize = CGSizeZero;
+    double ratio = 1.0;
+    
+    if (imageSize.height / imageSize.width > self.size.height / self.size.width) {
+        // Image is "longer" than screen
+        ratio = self.size.height / imageSize.height;
+        translatedSize = CGSizeMake(imageSize.width * ratio, self.size.height);
+    } else {
+        // Image is "wider" then the screen
+        ratio = self.size.width / imageSize.width;
+        translatedSize = CGSizeMake(self.size.width, imageSize.height * ratio);
+    }
+    
+    //    NSLog(@"Size before: %f:%f", self.baseImage.size.width, self.baseImage.size.height);
+    self.baseImage = [self imageWithImage:self.baseImage convertToSize:self.size];
+    
     self.currentActionId = [[NSUUID UUID] UUIDString];
     self.nextColor = [self.targetColors objectAtIndex:[CommonTools getRandomNumberFromInt:0 toInt:(int)self.targetColors.count - 1]];
-    [self combineEffects];
+    [self loadCombo];
     
     /*UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:_effectPadHolder];
@@ -615,7 +673,19 @@
             targetNode.color = [CommonTools getRandomColorCloseToColor:weakSelf.nextColor withDispersion:.3];
         }]]]];*/
         
-        [targetNode runAction:[SKAction colorizeWithColor:[CommonTools getRandomColorCloseToColor:weakSelf.nextColor withDispersion:.4] colorBlendFactor:1 duration:[CommonTools getRandomFloatFromFloat:1 toFloat:2]]];
+        int column = targetNode.columnIndex;
+        int row = targetNode.rowIndex;
+        
+        int translatedColumn = abs(column - weakSelf.gridSize.width);
+        int translatedRow = abs(row - weakSelf.gridSize.height);
+        
+        CGPoint blockPosition = CGPointMake(column * weakSelf.nodeSize.width - weakSelf.effectPadHolder.size.width / 2.0 + weakSelf.nodeSize.width / 2.0, row * weakSelf.nodeSize.height - weakSelf.effectPadHolder.size.height / 2.0 + weakSelf.nodeSize.height / 2.0);
+        
+        CGPoint pixelPosition = CGPointMake(column * weakSelf.nodeSize.width + weakSelf.nodeSize.width / 2.0, translatedRow * weakSelf.nodeSize.height + weakSelf.nodeSize.height / 2.0);
+        
+        UIColor *pixelColor = [weakSelf getPixelColorAtLocation:pixelPosition onImage:weakSelf.baseImage];
+        
+        [targetNode runAction:[SKAction colorizeWithColor:pixelColor colorBlendFactor:1 duration:[CommonTools getRandomFloatFromFloat:1 toFloat:2]]];
         
         if (weakSelf.currentActionNodes == (weakSelf.gridSize.width) * (weakSelf.gridSize.height)) {
             weakSelf.currentActionNodes = 0;
@@ -1034,6 +1104,126 @@
     [_effects addObject:rotate];
     [_effects addObject:swarm];
     [_effects addObject:shrink];
+}
+
+- (UIColor*) getPixelColorAtLocation:(CGPoint)point onImage: (UIImage *) sourceImage {
+    UIColor* color = nil;
+    CGImageRef inImage = sourceImage.CGImage;
+    // Create off screen bitmap context to draw the image into. Format ARGB is 4 bytes for each pixel: Alpa, Red, Green, Blue
+    CGContextRef cgctx = [self createARGBBitmapContextFromImage:inImage];
+    if (cgctx == NULL) { return nil; /* error */ }
+    
+    size_t w = CGImageGetWidth(inImage);
+    size_t h = CGImageGetHeight(inImage);
+    CGRect rect = {{0,0},{w,h}};
+    /** Extra Added code for Resized Images ****/
+    float xscale = w / self.frame.size.width;
+    float yscale = h / self.frame.size.height;
+    point.x = point.x * xscale;
+    point.y = point.y * yscale;
+    /** ****************************************/
+    
+    /** Extra Code Added for Resolution ***********/
+    CGFloat x = 1.0;
+    if ([sourceImage respondsToSelector:@selector(scale)]) x = sourceImage.scale;
+    /*********************************************/
+    // Draw the image to the bitmap context. Once we draw, the memory
+    // allocated for the context for rendering will then contain the
+    // raw image data in the specified color space.
+    CGContextDrawImage(cgctx, rect, inImage);
+    
+    // Now we can get a pointer to the image data associated with the bitmap
+    // context.
+    unsigned char* data = CGBitmapContextGetData (cgctx);
+    if (data != NULL) {
+        //offset locates the pixel in the data from x,y.
+        //4 for 4 bytes of data per pixel, w is width of one row of data.
+        //      int offset = 4*((w*round(point.y))+round(point.x));
+        
+        
+        int offset = 4*((w*round(point.y))+round(point.x))*x; //Replacement for Resolution
+        int alpha =  data[offset];
+        int red = data[offset+1];
+        int green = data[offset+2];
+        int blue = data[offset+3];
+//        NSLog(@"offset: %i colors: RGB A %i %i %i  %i",offset,red,green,blue,alpha);
+        color = [UIColor colorWithRed:(red/255.0f) green:(green/255.0f) blue:(blue/255.0f) alpha:(alpha/255.0f)];
+    }
+    
+    // When finished, release the context
+    CGContextRelease(cgctx);
+    // Free image data memory for the context
+    if (data) { free(data); }
+    
+    return color;
+}
+
+- (CGContextRef)createARGBBitmapContextFromImage:(CGImageRef)inImage
+{
+    CGContextRef context = NULL;
+    CGColorSpaceRef colorSpace;
+    void *bitmapData;
+    int bitmapByteCount;
+    int bitmapBytesPerRow;
+    
+    // Get image width, height. We'll use the entire image.
+    size_t pixelsWide = CGImageGetWidth(inImage);
+    size_t pixelsHigh = CGImageGetHeight(inImage);
+    
+    // Declare the number of bytes per row. Each pixel in the bitmap in this
+    // example is represented by 4 bytes; 8 bits each of red, green, blue, and
+    // alpha.
+    bitmapBytesPerRow   = (pixelsWide * 4);
+    bitmapByteCount     = (bitmapBytesPerRow * pixelsHigh);
+    
+    // Use the generic RGB color space.
+    colorSpace = CGColorSpaceCreateDeviceRGB();
+    
+    if (colorSpace == NULL)
+    {
+//        fprintf(stderr,"Error allocating color space\n");
+        return NULL;
+    }
+    
+    // Allocate memory for image data. This is the destination in memory
+    // where any drawing to the bitmap context will be rendered.
+    bitmapData = malloc(bitmapByteCount);
+    if (bitmapData == NULL)
+    {
+//        fprintf(stderr,"Memory not allocated!");
+        CGColorSpaceRelease(colorSpace);
+        return NULL;
+    }
+    
+    // Create the bitmap context. We want pre-multiplied ARGB, 8-bits
+    // per component. Regardless of what the source image format is
+    // (CMYK, Grayscale, and so on) it will be converted over to the format
+    // specified here by CGBitmapContextCreate.
+    context = CGBitmapContextCreate(bitmapData,
+                                    pixelsWide,
+                                    pixelsHigh,
+                                    8,   // bits per component
+                                    bitmapBytesPerRow,
+                                    colorSpace,
+                                    kCGImageAlphaPremultipliedFirst);
+    if (context == NULL)
+    {
+        free(bitmapData);
+//        fprintf(stderr,"Context not created!");
+    }
+    
+    // Make sure and release colorspace before returning
+    CGColorSpaceRelease(colorSpace);
+    
+    return context;
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image convertToSize:(CGSize)size {
+    UIGraphicsBeginImageContext(size);
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return destImage;
 }
 
 @end
