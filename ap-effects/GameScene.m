@@ -175,12 +175,12 @@
     _effectPadHolder.position = CGPointMake(0, 0);
     [self addChild:_effectPadHolder];
     
-    _gridSize = CGSizeMake(25, 40);
+    _gridSize = CGSizeMake(40, 60);
     _nodeSize = CGSizeMake(_effectPadHolder.size.width / _gridSize.width, _effectPadHolder.size.height / _gridSize.height);
     __weak GameScene *weakSelf = self;
     self.effectPad = [[TriggerPad alloc] initGridWithSize:_gridSize andNodeInitBlock:^id<TPActionNodeActor>(int row, int column) {
         
-        NodeObject *node = [[NodeObject alloc] initWithColor:weakSelf.baseColor size:CGSizeMake(_nodeSize.width - .5, _nodeSize.height - .5)];
+        NodeObject *node = [[NodeObject alloc] initWithColor:weakSelf.baseColor size:CGSizeMake(_nodeSize.width, _nodeSize.height)];
 
         node.anchorPoint = CGPointMake(.5, .5);
         CGPoint blockPosition = CGPointMake(column * weakSelf.nodeSize.width - weakSelf.effectPadHolder.size.width / 2.0 + weakSelf.nodeSize.width / 2.0, row * weakSelf.nodeSize.height - weakSelf.effectPadHolder.size.height / 2.0 + weakSelf.nodeSize.height / 2.0);
@@ -216,7 +216,7 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     self.currentActionId = [[NSUUID UUID] UUIDString];
     self.nextColor = [self.targetColors objectAtIndex:[CommonTools getRandomNumberFromInt:0 toInt:(int)self.targetColors.count - 1]];
-    [self loadCombo];
+    [self combineEffects];
     
     /*UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:_effectPadHolder];
@@ -570,7 +570,7 @@
 -(void)combineEffects
 {
     NSMutableArray *effects = [NSMutableArray array];
-    int effectCount= [CommonTools getRandomNumberFromInt:2 toInt:4];
+    int effectCount= [CommonTools getRandomNumberFromInt:1 toInt:6];
     
     for (int i=0; i<effectCount; i++) {
         int effectIndex = [CommonTools getRandomNumberFromInt:0 toInt:(int)_effects.count - 1];
@@ -615,7 +615,7 @@
             targetNode.color = [CommonTools getRandomColorCloseToColor:weakSelf.nextColor withDispersion:.3];
         }]]]];*/
         
-        [targetNode runAction:[SKAction colorizeWithColor:[CommonTools getRandomColorCloseToColor:weakSelf.nextColor withDispersion:.3] colorBlendFactor:1 duration:1.5]];
+        [targetNode runAction:[SKAction colorizeWithColor:[CommonTools getRandomColorCloseToColor:weakSelf.nextColor withDispersion:.4] colorBlendFactor:1 duration:[CommonTools getRandomFloatFromFloat:1 toFloat:2]]];
         
         if (weakSelf.currentActionNodes == (weakSelf.gridSize.width) * (weakSelf.gridSize.height)) {
             weakSelf.currentActionNodes = 0;
@@ -627,7 +627,9 @@
     waveEffect.action = ^(id<TPActionNodeActor>target, NSDictionary *userInfo) {
         NodeObject *targetNode = (NodeObject *)target;
         
-        SKAction *scaleSequence = [SKAction sequence:@[[SKAction scaleTo:.7 duration:.4 * _effectSpeed], [SKAction scaleTo:1 duration:.4 * _effectSpeed]]];
+        float duration = [CommonTools getRandomFloatFromFloat:.2 toFloat:.6];
+        
+        SKAction *scaleSequence = [SKAction sequence:@[[SKAction scaleTo:.7 duration:duration * _effectSpeed], [SKAction scaleTo:1 duration:duration * _effectSpeed]]];
         
         CGPoint sourcePosition = ((NSValue *)[userInfo objectForKey:@"startPoint"]).CGPointValue;
         NodeObject *sourceNode = (NodeObject *)([self.effectPad getNodeAtPosition:sourcePosition].nodeObject);
@@ -638,9 +640,9 @@
         
         CGPoint vec = rwMult(rwNormalize(rwSub(sourceNode.initialScreenPosition, targetNode.initialScreenPosition)), dist <= 16 ? dist : 16);
         
-        SKAction *moveSequence = [SKAction sequence:@[[SKAction moveTo:rwAdd(targetNode.initialScreenPosition, vec) duration:.4 * _effectSpeed], [SKAction moveTo:targetNode.initialScreenPosition duration:.4 * _effectSpeed]]];
+        SKAction *moveSequence = [SKAction sequence:@[[SKAction moveTo:rwAdd(targetNode.initialScreenPosition, vec) duration:duration * _effectSpeed], [SKAction moveTo:targetNode.initialScreenPosition duration:duration * _effectSpeed]]];
         
-        [targetNode runAction:[SKAction group:@[scaleSequence, moveSequence, [SKAction sequence:@[[SKAction fadeAlphaTo:.7 duration:.4 * _effectSpeed], [SKAction fadeAlphaTo:1 duration:.4 * _effectSpeed]]]]]];
+        [targetNode runAction:[SKAction group:@[scaleSequence, moveSequence, [SKAction sequence:@[[SKAction fadeAlphaTo:.7 duration:duration * _effectSpeed], [SKAction fadeAlphaTo:1 duration:duration * _effectSpeed]]]]]];
         
         //double scale = [_effectPad getNodeValueAtPosition:CGPointMake(targetNode.columnIndex, targetNode.rowIndex) forActionType:@"action"];
         
@@ -654,10 +656,10 @@
     //--------------------
     TPActionDescriptor *reverseWave = [[TPActionDescriptor alloc] init];
     reverseWave.action = ^(id<TPActionNodeActor>target, NSDictionary *userInfo) {
-        
+        float duration = [CommonTools getRandomFloatFromFloat:.2 toFloat:.6];
         NodeObject *targetNode = (NodeObject *)target;
         
-        SKAction *scaleSequence = [SKAction sequence:@[[SKAction scaleTo:1.4 duration:.4 * _effectSpeed], [SKAction scaleTo:1 duration:.4 * _effectSpeed]]];
+        SKAction *scaleSequence = [SKAction sequence:@[[SKAction scaleTo:1.4 duration:duration * _effectSpeed], [SKAction scaleTo:1 duration:duration * _effectSpeed]]];
         
         CGPoint sourcePosition = ((NSValue *)[userInfo objectForKey:@"startPoint"]).CGPointValue;
         NodeObject *sourceNode = (NodeObject *)([self.effectPad getNodeAtPosition:sourcePosition].nodeObject);
@@ -668,9 +670,9 @@
         
         CGPoint vec = rwMult(rwNormalize(rwSub(targetNode.initialScreenPosition, sourceNode.initialScreenPosition)), dist <= 16 ? dist : 16);
         
-        SKAction *moveSequence = [SKAction sequence:@[[SKAction moveTo:rwAdd(targetNode.initialScreenPosition, vec) duration:.4 * _effectSpeed], [SKAction moveTo:targetNode.initialScreenPosition duration:.4 * _effectSpeed]]];
+        SKAction *moveSequence = [SKAction sequence:@[[SKAction moveTo:rwAdd(targetNode.initialScreenPosition, vec) duration:duration * _effectSpeed], [SKAction moveTo:targetNode.initialScreenPosition duration:duration * _effectSpeed]]];
         
-        [targetNode runAction:[SKAction group:@[scaleSequence, moveSequence, [SKAction sequence:@[[SKAction fadeAlphaTo:.5 duration:.4 * _effectSpeed], [SKAction fadeAlphaTo:1 duration:.4 * _effectSpeed]]]]]];
+        [targetNode runAction:[SKAction group:@[scaleSequence, moveSequence, [SKAction sequence:@[[SKAction fadeAlphaTo:.5 duration:duration * _effectSpeed], [SKAction fadeAlphaTo:1 duration:duration * _effectSpeed]]]]]];
         
         //double scale = [_effectPad getNodeValueAtPosition:CGPointMake(targetNode.columnIndex, targetNode.rowIndex) forActionType:@"action"];
         
@@ -684,7 +686,7 @@
     //--------------------
     TPActionDescriptor *pushEffect = [[TPActionDescriptor alloc] init];
     pushEffect.action = ^(id<TPActionNodeActor>target, NSDictionary *userInfo) {
-        
+        float duration = [CommonTools getRandomFloatFromFloat:.2 toFloat:.6];
         NodeObject *targetNode = (NodeObject *)target;
         
         CGPoint sourcePosition = ((NSValue *)[userInfo objectForKey:@"startPoint"]).CGPointValue;
@@ -699,10 +701,10 @@
         CGPoint vec = rwMult(rwNormalize(rwSub(targetNode.initialScreenPosition, sourceNode.initialScreenPosition)), dist * 7);
         
         
-        SKAction *moveSequence = [SKAction sequence:@[[SKAction moveTo:rwAdd(targetNode.initialScreenPosition, vec) duration:.4 * _effectSpeed], [SKAction moveTo:targetNode.initialScreenPosition duration:.4 * _effectSpeed]]];
-        SKAction *scaleSequence = [SKAction sequence:@[[SKAction scaleTo:1 - dist / maxDist duration:.2 * _effectSpeed], [SKAction scaleTo:1 duration:.2 * _effectSpeed]]];
+        SKAction *moveSequence = [SKAction sequence:@[[SKAction moveTo:rwAdd(targetNode.initialScreenPosition, vec) duration:duration * _effectSpeed], [SKAction moveTo:targetNode.initialScreenPosition duration:duration * _effectSpeed]]];
+        SKAction *scaleSequence = [SKAction sequence:@[[SKAction scaleTo:1 - dist / maxDist duration:(duration / 2.0) * _effectSpeed], [SKAction scaleTo:1 duration:(duration / 2.0) * _effectSpeed]]];
         
-        [targetNode runAction:[SKAction group:@[[SKAction rotateByAngle:M_PI duration:.4 * _effectSpeed], moveSequence, scaleSequence, [SKAction sequence:@[[SKAction fadeAlphaTo:.5 duration:.4 * _effectSpeed], [SKAction fadeAlphaTo:1 duration:.4 * _effectSpeed]]]]]];
+        [targetNode runAction:[SKAction group:@[[SKAction rotateByAngle:M_PI duration:duration * _effectSpeed], moveSequence, scaleSequence, [SKAction sequence:@[[SKAction fadeAlphaTo:.5 duration:duration * _effectSpeed], [SKAction fadeAlphaTo:1 duration:duration * _effectSpeed]]]]]];
         
         //double scale = [_effectPad getNodeValueAtPosition:CGPointMake(targetNode.columnIndex, targetNode.rowIndex) forActionType:@"action"];
         
@@ -716,6 +718,7 @@
     //--------------------
     TPActionDescriptor *select = [[TPActionDescriptor alloc] init];
     select.action = ^(id<TPActionNodeActor>target, NSDictionary *userInfo) {
+        float duration = [CommonTools getRandomFloatFromFloat:.2 toFloat:.6];
         NodeObject *targetNode = (NodeObject *)target;
         
         CGPoint sourcePosition = ((NSValue *)[userInfo objectForKey:@"startPoint"]).CGPointValue;
@@ -735,7 +738,7 @@
         
         //[targetNode runAction:[SKAction group:@[moveSequence, scaleSequence, [SKAction colorizeWithColor:[UIColor greenColor] colorBlendFactor:1 duration:.4], [SKAction sequence:@[[SKAction fadeAlphaTo:.5 duration:.4], [SKAction fadeAlphaTo:1 duration:.4]]]]]];
         
-        [targetNode runAction:[SKAction sequence:@[[SKAction group:@[[SKAction moveTo:rwAdd(targetNode.initialScreenPosition, vec) duration:.2 * _effectSpeed], [SKAction scaleTo:1 + ((maxDist - dist) / maxDist) / 5 duration:.2 * _effectSpeed], [SKAction fadeAlphaTo:1 - (dist / maxDist) * 2 duration:.2 * _effectSpeed]]], [SKAction group:@[[SKAction moveTo:targetNode.initialScreenPosition duration:.2 * _effectSpeed], [SKAction scaleTo:1 duration:.2 * _effectSpeed], [SKAction fadeAlphaTo:1 duration:.2 * _effectSpeed]]]]]];
+        [targetNode runAction:[SKAction sequence:@[[SKAction group:@[[SKAction moveTo:rwAdd(targetNode.initialScreenPosition, vec) duration:(duration / 2.0) * _effectSpeed], [SKAction scaleTo:1 + ((maxDist - dist) / maxDist) / 5 duration:(duration / 2.0) * _effectSpeed], [SKAction fadeAlphaTo:1 - (dist / maxDist) * 2 duration:(duration / 2.0) * _effectSpeed]]], [SKAction group:@[[SKAction moveTo:targetNode.initialScreenPosition duration:(duration / 2.0) * _effectSpeed], [SKAction scaleTo:1 duration:(duration / 2.0) * _effectSpeed], [SKAction fadeAlphaTo:1 duration:(duration / 2.0) * _effectSpeed]]]]]];
     };
     select.actionName = @"select";
     
@@ -745,12 +748,12 @@
     TPActionDescriptor *mirror_y = [[TPActionDescriptor alloc] init];
     mirror_y.action = ^(id<TPActionNodeActor>target, NSDictionary *userInfo) {
         NodeObject *targetNode = (NodeObject *)target;
-        
+        float duration = [CommonTools getRandomFloatFromFloat:.1 toFloat:.6];
         int targetColumn = _gridSize.width - 1 - targetNode.columnIndex;
         NodeObject *destNode = (NodeObject *)[self.effectPad getNodeAtPosition:CGPointMake(targetColumn, targetNode.rowIndex)].nodeObject;
         CGPoint targetPosition = destNode.initialScreenPosition;
         
-        SKAction *mirrorAction = [SKAction sequence:@[[SKAction group:@[[SKAction rotateByAngle:M_PI duration:.4 * _effectSpeed], [SKAction moveTo:targetPosition duration:.4 * _effectSpeed], [SKAction sequence:@[[SKAction fadeAlphaTo:.5 duration:.2 * _effectSpeed], [SKAction fadeAlphaTo:1 duration:.2 * _effectSpeed]]], [SKAction sequence:@[[SKAction scaleTo:.7 duration:.2 * _effectSpeed], [SKAction scaleTo:1 duration:.2 * _effectSpeed]]]]], [SKAction group:@[[SKAction rotateByAngle:M_PI duration:.4 * _effectSpeed], [SKAction moveTo:targetNode.initialScreenPosition duration:.4 * _effectSpeed], [SKAction sequence:@[[SKAction fadeAlphaTo:.5 duration:.2 * _effectSpeed], [SKAction fadeAlphaTo:1 duration:.2 * _effectSpeed]]], [SKAction sequence:@[[SKAction scaleTo:.7 duration:.2 * _effectSpeed], [SKAction scaleTo:1 duration:.2 * _effectSpeed]]]]]]];
+        SKAction *mirrorAction = [SKAction sequence:@[[SKAction group:@[[SKAction rotateByAngle:M_PI duration:duration * _effectSpeed], [SKAction moveTo:targetPosition duration:duration * _effectSpeed], [SKAction sequence:@[[SKAction fadeAlphaTo:.5 duration:duration * _effectSpeed], [SKAction fadeAlphaTo:1 duration:duration * _effectSpeed]]], [SKAction sequence:@[[SKAction scaleTo:.7 duration:duration * _effectSpeed], [SKAction scaleTo:1 duration:duration * _effectSpeed]]]]], [SKAction group:@[[SKAction rotateByAngle:M_PI duration:duration * _effectSpeed], [SKAction moveTo:targetNode.initialScreenPosition duration:duration * _effectSpeed], [SKAction sequence:@[[SKAction fadeAlphaTo:.5 duration:duration * _effectSpeed], [SKAction fadeAlphaTo:1 duration:duration * _effectSpeed]]], [SKAction sequence:@[[SKAction scaleTo:.7 duration:duration * _effectSpeed], [SKAction scaleTo:1 duration:duration * _effectSpeed]]]]]]];
         
         //[targetNode runAction:[SKAction group:@[[SKAction rotateByAngle:M_PI duration:.4 * _effectSpeed], [SKAction moveTo:targetPosition duration:.4 * _effectSpeed], [SKAction sequence:@[[SKAction fadeAlphaTo:.5 duration:.2 * _effectSpeed], [SKAction fadeAlphaTo:1 duration:.2 * _effectSpeed]]], [SKAction sequence:@[[SKAction scaleTo:.7 duration:.2 * _effectSpeed], [SKAction scaleTo:1 duration:.2 * _effectSpeed]]]]]];
         
@@ -775,12 +778,12 @@
     TPActionDescriptor *mirror_x = [[TPActionDescriptor alloc] init];
     mirror_x.action = ^(id<TPActionNodeActor>target, NSDictionary *userInfo) {
         NodeObject *targetNode = (NodeObject *)target;
-        
+        float duration = [CommonTools getRandomFloatFromFloat:.2 toFloat:.6];
         int targetRow = _gridSize.height - 1 - targetNode.rowIndex;
         NodeObject *destNode = (NodeObject *)[self.effectPad getNodeAtPosition:CGPointMake(targetNode.columnIndex, targetRow)].nodeObject;
         CGPoint targetPosition = destNode.initialScreenPosition;
         
-        SKAction *mirrorAction = [SKAction sequence:@[[SKAction group:@[[SKAction moveTo:targetPosition duration:.4 * _effectSpeed], [SKAction sequence:@[[SKAction fadeAlphaTo:.5 duration:.2 * _effectSpeed], [SKAction fadeAlphaTo:1 duration:.2 * _effectSpeed]]], [SKAction sequence:@[[SKAction scaleTo:.7 duration:.2 * _effectSpeed], [SKAction scaleTo:1 duration:.2 * _effectSpeed]]]]], [SKAction group:@[[SKAction moveTo:targetNode.initialScreenPosition duration:.4 * _effectSpeed], [SKAction sequence:@[[SKAction fadeAlphaTo:.5 duration:.2 * _effectSpeed], [SKAction fadeAlphaTo:1 duration:.2 * _effectSpeed]]], [SKAction sequence:@[[SKAction scaleTo:.7 duration:.2 * _effectSpeed], [SKAction scaleTo:1 duration:.2 * _effectSpeed]]]]]]];
+        SKAction *mirrorAction = [SKAction sequence:@[[SKAction group:@[[SKAction moveTo:targetPosition duration:duration * _effectSpeed], [SKAction sequence:@[[SKAction fadeAlphaTo:.5 duration:duration * _effectSpeed], [SKAction fadeAlphaTo:1 duration:.2 * _effectSpeed]]], [SKAction sequence:@[[SKAction scaleTo:.7 duration:.2 * _effectSpeed], [SKAction scaleTo:1 duration:duration * _effectSpeed]]]]], [SKAction group:@[[SKAction moveTo:targetNode.initialScreenPosition duration:.4 * _effectSpeed], [SKAction sequence:@[[SKAction fadeAlphaTo:.5 duration:.2 * _effectSpeed], [SKAction fadeAlphaTo:1 duration:.2 * _effectSpeed]]], [SKAction sequence:@[[SKAction scaleTo:.7 duration:.2 * _effectSpeed], [SKAction scaleTo:1 duration:duration * _effectSpeed]]]]]]];
         
         //[targetNode runAction:[SKAction group:@[[SKAction moveTo:targetPosition duration:.4 * _effectSpeed], [SKAction sequence:@[[SKAction fadeAlphaTo:.5 duration:.2 * _effectSpeed], [SKAction fadeAlphaTo:1 duration:.2 * _effectSpeed]]], [SKAction sequence:@[[SKAction scaleTo:.7 duration:.2 * _effectSpeed], [SKAction scaleTo:1 duration:.2 * _effectSpeed]]]]]];
         [targetNode runAction:mirrorAction];
@@ -804,8 +807,9 @@
     TPActionDescriptor *rotate = [[TPActionDescriptor alloc] init];
     rotate.action = ^(id<TPActionNodeActor>target, NSDictionary *userInfo) {
         NodeObject *targetNode = (NodeObject *)target;
+        float duration = [CommonTools getRandomFloatFromFloat:.2 toFloat:.6];
         
-        [targetNode runAction:[SKAction group:@[[SKAction rotateByAngle:M_PI duration:.4 * _effectSpeed], [SKAction sequence:@[[SKAction fadeAlphaTo:.5 duration:.2 * _effectSpeed], [SKAction fadeAlphaTo:1 duration:.2 * _effectSpeed]]], [SKAction sequence:@[[SKAction scaleTo:.7 duration:.2 * _effectSpeed], [SKAction scaleTo:1 duration:.2 * _effectSpeed]]]]]];
+        [targetNode runAction:[SKAction group:@[[SKAction rotateByAngle:M_PI duration:duration * _effectSpeed], [SKAction sequence:@[[SKAction fadeAlphaTo:.5 duration:duration * _effectSpeed], [SKAction fadeAlphaTo:1 duration:duration * _effectSpeed]]], [SKAction sequence:@[[SKAction scaleTo:.7 duration:duration * _effectSpeed], [SKAction scaleTo:1 duration:duration * _effectSpeed]]]]]];
     };
     rotate.actionName = @"rotate";
     
@@ -815,11 +819,11 @@
     TPActionDescriptor *shrink = [[TPActionDescriptor alloc] init];
     shrink.action = ^(id<TPActionNodeActor>target, NSDictionary *userInfo) {
         NodeObject *targetNode = (NodeObject *)target;
-        
+        float duration = [CommonTools getRandomFloatFromFloat:.2 toFloat:.6];
         CGPoint sourcePosition = ((NSValue *)[userInfo objectForKey:@"startPoint"]).CGPointValue;
         NodeObject *sourceNode = (NodeObject *)([self.effectPad getNodeAtPosition:sourcePosition].nodeObject);
         
-        [targetNode runAction:[SKAction group:@[[SKAction rotateByAngle:M_PI duration:.8 * _effectSpeed], [SKAction sequence:@[[SKAction group:@[[SKAction moveTo:sourceNode.position duration:.4 * _effectSpeed], [SKAction fadeAlphaTo:.5 duration:.4 * _effectSpeed], [SKAction scaleTo:.5 duration:.4 * _effectSpeed]]], [SKAction group:@[[SKAction moveTo:targetNode.initialScreenPosition duration:.4 * _effectSpeed], [SKAction fadeAlphaTo:1 duration:.4 * _effectSpeed], [SKAction scaleTo:1 duration:.4 * _effectSpeed]]]]]]]];
+        [targetNode runAction:[SKAction group:@[[SKAction rotateByAngle:M_PI duration:duration * _effectSpeed], [SKAction sequence:@[[SKAction group:@[[SKAction moveTo:sourceNode.position duration:duration * _effectSpeed], [SKAction fadeAlphaTo:.5 duration:duration * _effectSpeed], [SKAction scaleTo:.5 duration:duration * _effectSpeed]]], [SKAction group:@[[SKAction moveTo:targetNode.initialScreenPosition duration:duration * _effectSpeed], [SKAction fadeAlphaTo:1 duration:duration * _effectSpeed], [SKAction scaleTo:1 duration:duration * _effectSpeed]]]]]]]];
     };
     shrink.actionName = @"shrink";
     
@@ -829,14 +833,14 @@
     TPActionDescriptor *swarm = [[TPActionDescriptor alloc] init];
     swarm.action = ^(id<TPActionNodeActor>target, NSDictionary *userInfo) {
         NodeObject *targetNode = (NodeObject *)target;
-        
+        float duration = [CommonTools getRandomFloatFromFloat:.2 toFloat:.4];
         CGPoint sourcePosition = ((NSValue *)[userInfo objectForKey:@"startPoint"]).CGPointValue;
         NodeObject *sourceNode = (NodeObject *)([self.effectPad getNodeAtPosition:sourcePosition].nodeObject);
         
         CGPoint vec = rwSub(sourceNode.position, targetNode.position);
         double dist = rwLength(vec);
         
-        [targetNode runAction:[SKAction group:@[[SKAction sequence:@[[SKAction moveTo:CGPointMake(targetNode.position.x + [CommonTools getRandomNumberFromInt:-1 toInt:1] * dist, sourceNode.position.y + [CommonTools getRandomNumberFromInt:-1 toInt:1] * dist) duration:.4 * _effectSpeed], [SKAction moveTo:targetNode.initialScreenPosition duration:.4 * _effectSpeed]]]]]];
+        [targetNode runAction:[SKAction group:@[[SKAction sequence:@[[SKAction moveTo:CGPointMake(targetNode.position.x + [CommonTools getRandomNumberFromInt:-1 toInt:1] * dist, sourceNode.position.y + [CommonTools getRandomNumberFromInt:-1 toInt:1] * dist) duration:duration * _effectSpeed], [SKAction moveTo:targetNode.initialScreenPosition duration:duration * _effectSpeed]]]]]];
     };
     swarm.actionName = @"swarm";
     
@@ -848,7 +852,7 @@
     TPActionDescriptor *follow = [[TPActionDescriptor alloc] init];
     follow.action = ^(id<TPActionNodeActor>target, NSDictionary *userInfo) {
         NodeObject *targetNode = (NodeObject *)target;
-        
+        float duration = [CommonTools getRandomFloatFromFloat:.2 toFloat:.6];
         //CGPoint sourcePosition = ((NSValue *)[userInfo objectForKey:@"actionSource"]).CGPointValue;
         //NodeObject *sourceNode = (NodeObject *)([_effectPad getNodeAtPosition:sourcePosition].nodeObject);
         
@@ -856,9 +860,9 @@
             _mainActorNode = targetNode;
             CGPoint destination = CGPointMake(_gridSize.width - 1 - targetNode.columnIndex, _gridSize.height - 1 - targetNode.rowIndex);
             NodeObject *destNode = (NodeObject *)[self.effectPad getNodeAtPosition:destination].nodeObject;
-            [targetNode runAction:[SKAction group:@[[SKAction sequence:@[[SKAction moveTo:destNode.position duration:.4 * _effectSpeed], [SKAction moveTo:targetNode.initialScreenPosition duration:.4 * _effectSpeed]]]]]];
+            [targetNode runAction:[SKAction group:@[[SKAction sequence:@[[SKAction moveTo:destNode.position duration:duration * _effectSpeed], [SKAction moveTo:targetNode.initialScreenPosition duration:duration * _effectSpeed]]]]]];
         } else {
-            [targetNode runAction:[SKAction group:@[[SKAction sequence:@[[SKAction moveTo:_mainActorNode.position duration:.4 * _effectSpeed], [SKAction moveTo:targetNode.initialScreenPosition duration:.4 * _effectSpeed]]]]]];
+            [targetNode runAction:[SKAction group:@[[SKAction sequence:@[[SKAction moveTo:_mainActorNode.position duration:duration * _effectSpeed], [SKAction moveTo:targetNode.initialScreenPosition duration:duration * _effectSpeed]]]]]];
             _mainActorNode = nil;
             
         }
@@ -878,6 +882,7 @@
     TPActionDescriptor *swarm2 = [[TPActionDescriptor alloc] init];
     swarm2.action = ^(id<TPActionNodeActor>target, NSDictionary *userInfo) {
         NodeObject *targetNode = (NodeObject *)target;
+        float duration = [CommonTools getRandomFloatFromFloat:.2 toFloat:.6];
         
         CGPoint sourcePosition = ((NSValue *)[userInfo objectForKey:@"startPoint"]).CGPointValue;
         NodeObject *sourceNode = (NodeObject *)([self.effectPad getNodeAtPosition:sourcePosition].nodeObject);
@@ -891,9 +896,9 @@
             _mainActorNode = targetNode;
             CGPoint destination = CGPointMake(_gridSize.width - 1 - targetNode.columnIndex, _gridSize.height - 1 - targetNode.rowIndex);
             NodeObject *destNode = _mainActorNode;
-            [targetNode runAction:[SKAction group:@[[SKAction sequence:@[[SKAction moveTo:destNode.position duration:.4 * _effectSpeed], [SKAction moveTo:targetNode.initialScreenPosition duration:.4 * _effectSpeed]]]]]];
+            [targetNode runAction:[SKAction group:@[[SKAction sequence:@[[SKAction moveTo:destNode.position duration:duration * _effectSpeed], [SKAction moveTo:targetNode.initialScreenPosition duration:duration * _effectSpeed]]]]]];
         } else {
-            [targetNode runAction:[SKAction group:@[[SKAction sequence:@[[SKAction moveTo:CGPointMake(targetNode.position.x + [CommonTools getRandomNumberFromInt:-1 toInt:1] * dist, sourceNode.position.y + [CommonTools getRandomNumberFromInt:-1 toInt:1] * dist) duration:.4 * _effectSpeed], [SKAction moveTo:targetNode.initialScreenPosition duration:.4 * _effectSpeed]]]]]];
+            [targetNode runAction:[SKAction group:@[[SKAction sequence:@[[SKAction moveTo:CGPointMake(targetNode.position.x + [CommonTools getRandomNumberFromInt:-1 toInt:1] * dist, sourceNode.position.y + [CommonTools getRandomNumberFromInt:-1 toInt:1] * dist) duration:duration * _effectSpeed], [SKAction moveTo:targetNode.initialScreenPosition duration:duration * _effectSpeed]]]]]];
             _mainActorNode = nil;
         }
     };
@@ -905,16 +910,16 @@
     TPActionDescriptor *closer = [[TPActionDescriptor alloc] init];
     closer.action = ^(id<TPActionNodeActor>target, NSDictionary *userInfo) {
         NodeObject *targetNode = (NodeObject *)target;
-        
+        float duration = [CommonTools getRandomFloatFromFloat:.2 toFloat:.6];
         CGPoint destination = CGPointMake(_gridSize.width - 1 - targetNode.columnIndex, targetNode.rowIndex);
         NodeObject *destNode = (NodeObject *)[self.effectPad getNodeAtPosition:destination].nodeObject;
         
         if (_mainActorNode) {
-            [targetNode runAction:[SKAction sequence:@[[SKAction group:@[[SKAction moveTo:destNode.position duration:.4 * _effectSpeed], [SKAction fadeAlphaTo:.5 duration:.4 * _effectSpeed], [SKAction scaleTo:.5 duration:.4 * _effectSpeed]]], [SKAction group:@[[SKAction moveTo:targetNode.initialScreenPosition duration:.4 * _effectSpeed], [SKAction fadeAlphaTo:1 duration:.4 * _effectSpeed], [SKAction scaleTo:1 duration:.4 * _effectSpeed]]]]]];
+            [targetNode runAction:[SKAction sequence:@[[SKAction group:@[[SKAction moveTo:destNode.position duration:duration * _effectSpeed], [SKAction fadeAlphaTo:.5 duration:duration * _effectSpeed], [SKAction scaleTo:.5 duration:duration * _effectSpeed]]], [SKAction group:@[[SKAction moveTo:targetNode.initialScreenPosition duration:duration * _effectSpeed], [SKAction fadeAlphaTo:1 duration:.4 * _effectSpeed], [SKAction scaleTo:1 duration:duration * _effectSpeed]]]]]];
             _mainActorNode = nil;
         } else {
             _mainActorNode = targetNode;
-            [targetNode runAction:[SKAction sequence:@[[SKAction group:@[[SKAction moveTo:destNode.position duration:.4 * _effectSpeed], [SKAction fadeAlphaTo:.5 duration:.4 * _effectSpeed], [SKAction scaleTo:.5 duration:.4 * _effectSpeed]]], [SKAction group:@[[SKAction moveTo:targetNode.initialScreenPosition duration:.4 * _effectSpeed], [SKAction fadeAlphaTo:1 duration:.4 * _effectSpeed], [SKAction scaleTo:1 duration:.4 * _effectSpeed]]]]]];
+            [targetNode runAction:[SKAction sequence:@[[SKAction group:@[[SKAction moveTo:destNode.position duration:duration * _effectSpeed], [SKAction fadeAlphaTo:.5 duration:duration * _effectSpeed], [SKAction scaleTo:.5 duration:.4 * _effectSpeed]]], [SKAction group:@[[SKAction moveTo:targetNode.initialScreenPosition duration:duration * _effectSpeed], [SKAction fadeAlphaTo:1 duration:duration * _effectSpeed], [SKAction scaleTo:1 duration:duration * _effectSpeed]]]]]];
         }
     };
     closer.actionName = @"closer";
@@ -928,7 +933,7 @@
     TPActionDescriptor *draw = [[TPActionDescriptor alloc] init];
     draw.action = ^(id<TPActionNodeActor>target, NSDictionary *userInfo) {
         NodeObject *targetNode = (NodeObject *)target;
-        
+        float duration = [CommonTools getRandomFloatFromFloat:.4 toFloat:1.0];
         int targetColumn = _gridSize.width - 1 - targetNode.columnIndex;
         int targetRow = _gridSize.height - 1 - targetNode.rowIndex;
         
@@ -947,7 +952,7 @@
         destNode_y.color = [CommonTools getRandomColorCloseToColor:nextColor withDispersion:.3];
         destNode_x_y.color = [CommonTools getRandomColorCloseToColor:nextColor withDispersion:.3];
         
-        [targetNode runAction:[SKAction sequence:@[[SKAction fadeAlphaTo:1 duration:.2], [SKAction fadeAlphaTo:0 duration:1.5]]]];
+        [targetNode runAction:[SKAction sequence:@[[SKAction fadeAlphaTo:1 duration:.2], [SKAction fadeAlphaTo:0 duration:duration]]]];
         /*if (_isMirror_x) {
          [destNode_x runAction:[SKAction sequence:@[[SKAction fadeAlphaTo:1 duration:.2], [SKAction fadeAlphaTo:0 duration:1.5]]]];
          }
@@ -965,10 +970,10 @@
     TPActionDescriptor *gestureWave = [[TPActionDescriptor alloc] init];
     gestureWave.action = ^(id<TPActionNodeActor>target, NSDictionary *userInfo) {
         NodeObject *targetNode = (NodeObject *)target;
-        
+        float duration = [CommonTools getRandomFloatFromFloat:.2 toFloat:.6];
         NSString *gestureId = [userInfo objectForKey:@"gestureId"];
         //if ([targetNode.gestureIds containsObject:gestureId]) {
-        SKAction *scaleSequence = [SKAction sequence:@[[SKAction scaleTo:.7 duration:.4 * _effectSpeed], [SKAction scaleTo:1 duration:.4 * _effectSpeed]]];
+        SKAction *scaleSequence = [SKAction sequence:@[[SKAction scaleTo:.7 duration:duration * _effectSpeed], [SKAction scaleTo:1 duration:duration * _effectSpeed]]];
         
         CGPoint sourcePosition = ((NSValue *)[userInfo objectForKey:@"startPoint"]).CGPointValue;
         NodeObject *sourceNode = (NodeObject *)([self.effectPad getNodeAtPosition:sourcePosition].nodeObject);
@@ -979,9 +984,9 @@
         
         CGPoint vec = rwMult(rwNormalize(rwSub(sourceNode.initialScreenPosition, targetNode.initialScreenPosition)), dist <= 16 ? dist : 16);
         
-        SKAction *moveSequence = [SKAction sequence:@[[SKAction moveTo:rwAdd(targetNode.initialScreenPosition, vec) duration:.4 * _effectSpeed], [SKAction moveTo:targetNode.initialScreenPosition duration:.4 * _effectSpeed]]];
+        SKAction *moveSequence = [SKAction sequence:@[[SKAction moveTo:rwAdd(targetNode.initialScreenPosition, vec) duration:duration * _effectSpeed], [SKAction moveTo:targetNode.initialScreenPosition duration:duration * _effectSpeed]]];
         
-        [targetNode runAction:[SKAction group:@[scaleSequence, moveSequence, [SKAction sequence:@[[SKAction fadeAlphaTo:.7 duration:.4 * _effectSpeed], [SKAction fadeAlphaTo:1 duration:.4 * _effectSpeed]]]]]];
+        [targetNode runAction:[SKAction group:@[scaleSequence, moveSequence, [SKAction sequence:@[[SKAction fadeAlphaTo:.7 duration:duration * _effectSpeed], [SKAction fadeAlphaTo:1 duration:duration * _effectSpeed]]]]]];
         //}
     };
     [self.effectPad.unifiedActionDescriptors setObject:@[gestureWave] forKey:@"gestureWave"];
