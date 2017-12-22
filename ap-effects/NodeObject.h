@@ -11,10 +11,19 @@
 
 @interface NodeObject : SKSpriteNode<TPActionNodeActor>
 
+-(id)initWithSize:(CGSize)size;
+
 @property (nonatomic) int rowIndex;
 @property (nonatomic) int columnIndex;
 
+@property (nonatomic) NodeObject *topLeftNode;
+@property (nonatomic) NodeObject *topRightNode;
+@property (nonatomic) NodeObject *bottomLeftNode;
+@property (nonatomic) NodeObject *bottomRightNode;
+
 @property (nonatomic) CGPoint initialScreenPosition;
+
+-(void)setupNodeWithColors:(NSArray *) colors;
 
 //@property (nonatomic) NSMutableArray *gestureIds;
 

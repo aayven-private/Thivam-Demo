@@ -136,7 +136,7 @@
 -(void)initScene
 {
 //    NSLog(@"Self size: %f:%f", self.size.width, self.size.height);
-    self.baseImage = [UIImage imageNamed:@"marta"];
+    self.baseImage = [UIImage imageNamed:@"test2"];
     CGSize imageSize = self.baseImage.size;
     
     self.even = false;
@@ -201,21 +201,32 @@
     _effectPadHolder.position = CGPointMake(0, 0);
     [self addChild:_effectPadHolder];
     
-    _gridSize = CGSizeMake(60, 90);
+    _gridSize = CGSizeMake(30, 50);
     _nodeSize = CGSizeMake(_effectPadHolder.size.width / _gridSize.width, _effectPadHolder.size.height / _gridSize.height);
     __weak GameScene *weakSelf = self;
     self.effectPad = [[TriggerPad alloc] initGridWithSize:_gridSize andNodeInitBlock:^id<TPActionNodeActor>(int row, int column) {
-        int translatedColumn = abs(column - weakSelf.gridSize.width);
-        int translatedRow = abs(row - weakSelf.gridSize.height);
+//        int translatedColumn = abs(column - weakSelf.gridSize.width + 1);
+        int translatedRow = abs(row - (int)weakSelf.gridSize.height + 1);
         
         CGPoint blockPosition = CGPointMake(column * weakSelf.nodeSize.width - weakSelf.effectPadHolder.size.width / 2.0 + weakSelf.nodeSize.width / 2.0, row * weakSelf.nodeSize.height - weakSelf.effectPadHolder.size.height / 2.0 + weakSelf.nodeSize.height / 2.0);
         
         CGPoint pixelPosition = CGPointMake(column * weakSelf.nodeSize.width + weakSelf.nodeSize.width / 2.0, translatedRow * weakSelf.nodeSize.height + weakSelf.nodeSize.height / 2.0);
+//        UIColor *pixelColor = [weakSelf getPixelColorAtLocation:pixelPosition onImage:weakSelf.baseImage];
         
-        UIColor *pixelColor = [weakSelf getPixelColorAtLocation:pixelPosition onImage:weakSelf.baseImage];
+        CGPoint topLeftCenter = CGPointMake(pixelPosition.x - weakSelf.nodeSize.width / 4.0, pixelPosition.y + weakSelf.nodeSize.height / 4.0);
+        CGPoint topRightCenter = CGPointMake(pixelPosition.x + weakSelf.nodeSize.width / 4.0, pixelPosition.y + weakSelf.nodeSize.height / 4.0);
+        CGPoint bottomLeftCenter = CGPointMake(pixelPosition.x - weakSelf.nodeSize.width / 4.0, pixelPosition.y - weakSelf.nodeSize.height / 4.0);
+        CGPoint bottomRightCenter = CGPointMake(pixelPosition.x + weakSelf.nodeSize.width / 4.0, pixelPosition.y - weakSelf.nodeSize.height / 4.0);
         
-        NodeObject *node = [[NodeObject alloc] initWithColor:pixelColor size:CGSizeMake(_nodeSize.width + 1, _nodeSize.height + 1)];
-
+        
+        UIColor *topLeftColor = [weakSelf getPixelColorAtLocation:topLeftCenter onImage:weakSelf.baseImage];
+        UIColor *topRightColor = [weakSelf getPixelColorAtLocation:topRightCenter onImage:weakSelf.baseImage];
+        UIColor *bottomLeftColor = [weakSelf getPixelColorAtLocation:bottomLeftCenter onImage:weakSelf.baseImage];
+        UIColor *bottomRightColor = [weakSelf getPixelColorAtLocation:bottomRightCenter onImage:weakSelf.baseImage];
+        
+        NodeObject *node = [[NodeObject alloc] initWithSize:CGSizeMake(_nodeSize.width + 1, _nodeSize.height + 1)];
+        [node setupNodeWithColors:[NSArray arrayWithObjects:topLeftColor, topRightColor, bottomLeftColor, bottomRightColor, nil]];
+//        [node setupNodeWithColors:[NSArray arrayWithObjects:pixelColor, pixelColor, pixelColor, pixelColor, nil]];
         node.anchorPoint = CGPointMake(.5, .5);
         
         
@@ -252,7 +263,7 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     self.even = !self.even;
-    self.baseImage = self.even ? [UIImage imageNamed:@"ivan"] : [UIImage imageNamed:@"marta"];
+    self.baseImage = self.even ? [UIImage imageNamed:@"test3"] : [UIImage imageNamed:@"test2"];
     CGSize imageSize = self.baseImage.size;
     
     
@@ -274,7 +285,7 @@
     
     self.currentActionId = [[NSUUID UUID] UUIDString];
     self.nextColor = [self.targetColors objectAtIndex:[CommonTools getRandomNumberFromInt:0 toInt:(int)self.targetColors.count - 1]];
-    [self loadCombo];
+    [self loadNextEffect];
     
     /*UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:_effectPadHolder];
@@ -673,19 +684,29 @@
             targetNode.color = [CommonTools getRandomColorCloseToColor:weakSelf.nextColor withDispersion:.3];
         }]]]];*/
         
+        
         int column = targetNode.columnIndex;
         int row = targetNode.rowIndex;
         
-        int translatedColumn = abs(column - weakSelf.gridSize.width);
-        int translatedRow = abs(row - weakSelf.gridSize.height);
+        int translatedRow = abs(row - (int)weakSelf.gridSize.height + 1);
         
-        CGPoint blockPosition = CGPointMake(column * weakSelf.nodeSize.width - weakSelf.effectPadHolder.size.width / 2.0 + weakSelf.nodeSize.width / 2.0, row * weakSelf.nodeSize.height - weakSelf.effectPadHolder.size.height / 2.0 + weakSelf.nodeSize.height / 2.0);
+//        CGPoint blockPosition = CGPointMake(column * weakSelf.nodeSize.width - weakSelf.effectPadHolder.size.width / 2.0 + weakSelf.nodeSize.width / 2.0, row * weakSelf.nodeSize.height - weakSelf.effectPadHolder.size.height / 2.0 + weakSelf.nodeSize.height / 2.0);
         
         CGPoint pixelPosition = CGPointMake(column * weakSelf.nodeSize.width + weakSelf.nodeSize.width / 2.0, translatedRow * weakSelf.nodeSize.height + weakSelf.nodeSize.height / 2.0);
+//        UIColor *pixelColor = [weakSelf getPixelColorAtLocation:pixelPosition onImage:weakSelf.baseImage];
         
-        UIColor *pixelColor = [weakSelf getPixelColorAtLocation:pixelPosition onImage:weakSelf.baseImage];
+        CGPoint topLeftCenter = CGPointMake(pixelPosition.x - weakSelf.nodeSize.width / 4.0, pixelPosition.y + weakSelf.nodeSize.height / 4.0);
+        CGPoint topRightCenter = CGPointMake(pixelPosition.x + weakSelf.nodeSize.width / 4.0, pixelPosition.y + weakSelf.nodeSize.height / 4.0);
+        CGPoint bottomLeftCenter = CGPointMake(pixelPosition.x - weakSelf.nodeSize.width / 4.0, pixelPosition.y - weakSelf.nodeSize.height / 4.0);
+        CGPoint bottomRightCenter = CGPointMake(pixelPosition.x + weakSelf.nodeSize.width / 4.0, pixelPosition.y - weakSelf.nodeSize.height / 4.0);
         
-        [targetNode runAction:[SKAction colorizeWithColor:pixelColor colorBlendFactor:1 duration:[CommonTools getRandomFloatFromFloat:1 toFloat:2]]];
+        UIColor *topLeftColor = [weakSelf getPixelColorAtLocation:topLeftCenter onImage:weakSelf.baseImage];
+        UIColor *topRightColor = [weakSelf getPixelColorAtLocation:topRightCenter onImage:weakSelf.baseImage];
+        UIColor *bottomLeftColor = [weakSelf getPixelColorAtLocation:bottomLeftCenter onImage:weakSelf.baseImage];
+        UIColor *bottomRightColor = [weakSelf getPixelColorAtLocation:bottomRightCenter onImage:weakSelf.baseImage];
+        [targetNode setupNodeWithColors:[NSArray arrayWithObjects:topLeftColor, topRightColor, bottomLeftColor, bottomRightColor, nil]];
+        
+        [targetNode runAction:[SKAction colorizeWithColor:[UIColor clearColor] colorBlendFactor:1 duration:[CommonTools getRandomFloatFromFloat:1 toFloat:2]]];
         
         if (weakSelf.currentActionNodes == (weakSelf.gridSize.width) * (weakSelf.gridSize.height)) {
             weakSelf.currentActionNodes = 0;
